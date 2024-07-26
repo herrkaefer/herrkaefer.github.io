@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - 自动转发Twitter到微博</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  November 06, 2017
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">自动转发Twitter到微博</h1>
+
+<div id="post">
+  <p>在Twitter上关注了几个图片账号, 比如<a href="https://twitter.com/HistoryInPix">@HistoryInPix</a>, 经常想把一些有趣的图文转发到微博, 但操作起来却麻烦. 闲来无聊, 就做了个小机器人来自动把感兴趣的账号发的推全部转发到微博的某个账号(<a href="https://weibo.com/u/6401135522">@图中看史</a>)里, 这样在微博里就可以关注和转发了. 简单记录一下过程.</p>
+
+<p>Open source: <a href="https://github.com/herrkaefer/twitter2weibo">GitHub: twitter2weibo</a></p>
+
+<h2 id="准备工作">准备工作</h2>
+
+<p>首先, 在Twitter和微博的开发平台上注册成为开发者, 并分别创建应用.</p>
+
+<ul>
+  <li><a href="https://developer.twitter.com/">Twitter开发平台</a></li>
+  <li><a href="http://open.weibo.com/">微博开放平台</a></li>
+</ul>
+
+<p>Twitter上很简单, 创建即生效, 直接拿到四个值: <code class="language-plaintext highlighter-rouge">consumer_key</code>, <code class="language-plaintext highlighter-rouge">consumer_secret</code>, <code class="language-plaintext highlighter-rouge">access_token</code>, <code class="language-plaintext highlighter-rouge">access_token_secret</code>.</p>
+
+<p>微博上就有点麻烦, 因为需要官方审核. 因此需要做一个简单网页, 放上微博组件, 审核通过后才可以让第三方账号(开发者之外的账号)使用.</p>
+
+<p>在微博开发平台的”基本信息”里, 得到<code class="language-plaintext highlighter-rouge">App Key</code>和<code class="language-plaintext highlighter-rouge">App Secret</code>. 在”高级信息”的授权回调页可以填: <code class="language-plaintext highlighter-rouge">http://127.0.0.1/callback</code>.</p>
+
+<p>接下来, 可以在iPython里顺序执行下面一次性授权工作, 得到<code class="language-plaintext highlighter-rouge">token</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">weibo</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="n">REDIRECT_URI</span> <span class="o">=</span> <span class="s">"http://127.0.0.1/callback"</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">,</span> <span class="n">API_SECRET</span><span class="p">,</span> <span class="n">REDIRECT_URI</span><span class="p">)</span>
+<span class="n">c</span><span class="p">.</span><span class="n">authorize_url</span>
+</code></pre></div></div>
+<p>在浏览器打开授权页, 在地址栏里拷贝得到<code class="language-plaintext highlighter-rouge">code</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">code</span> <span class="o">=</span> <span class="s">'xxxxxxxxx'</span>
+<span class="n">c</span><span class="p">.</span><span class="n">set_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">token</span><span class="p">)</span>
+</code></pre></div></div>
+<p>得到<code class="language-plaintext highlighter-rouge">token</code>后便可以保存到script中以供使用.</p>
+
+<p>然后还需要注册一个微博”接收账号”, 用于发布微博.</p>
+
+<h2 id="在vps上配置python环境">在VPS上配置Python环境</h2>
+
+<p>使用第三方库<code class="language-plaintext highlighter-rouge">tweepy</code>和<code class="language-plaintext highlighter-rouge">weibo</code>, 来分别调用Twitter和微博的API.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>tweepy weibo
+</code></pre></div></div>
+
+<h2 id="脚本">脚本</h2>
+
+<p>基本流程: 从多个关注的Twitter账号抓取新的推文及图片, 然后发到微博账号.</p>
+
+<p>建立一个<code class="language-plaintext highlighter-rouge">appcofig.py</code>私有文件, 存放Twitter和微博应用的<code class="language-plaintext highlighter-rouge">key</code>, <code class="language-plaintext highlighter-rouge">secret</code>等参数.</p>
+
+<p>使用pickle存储每个Twitter账号最后转发的tweet的时间.</p>
+
+<h2 id="定期执行">定期执行</h2>
+
+<p>在VPS上, 使用Cron来做即可.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>crontab <span class="nt">-e</span>
+</code></pre></div></div>
+<p>添加任务:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10 * * * * python /home/herrkaefer/twitter2weibo/twitter2weibo.py &gt;&gt; /home/herrkaefer/twitter2weibo/log.txt
+</code></pre></div></div>
+
+<p>含义是每小时的10分执行一次, 并log到文件中.</p>
+
+<p>在本次执行时, 应该检测脚本是否已经在执行中, 如果已经在执行则退出. 为了实现这一点, 可借用一个临时文件来判断. 在每次执行前:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pidfile</span> <span class="o">=</span> <span class="s">"/tmp/twitter2weibo.pid"</span>
+<span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pidfile</span><span class="p">):</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">()</span>
+<span class="nb">file</span><span class="p">(</span><span class="n">pidfile</span><span class="p">,</span> <span class="s">'w'</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">getpid</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<p>正常执行后:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">os</span><span class="p">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">pidfile</span><span class="p">)</span>
+<span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="限制">限制</h2>
+
+<ul>
+  <li>微博每天有user rate limit, 不能太频繁, 但具体限制是多少, 官方文档中语焉不详. 目前设为3分钟发一条, 转发的Twitter账号数量很少, 看起来没问题.</li>
+  <li>微博API只允许发一张图片, 因此推文含多图的, 只能转发第一张.</li>
+</ul>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2018-03-15
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/&text=自动转发Twitter到微博: http://localhost:4000/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/&appkey=&title=分享下@herrkaefer 的文章: 自动转发Twitter到微博&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/&title=自动转发Twitter到微博" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=自动转发Twitter到微博&body=http://localhost:4000/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

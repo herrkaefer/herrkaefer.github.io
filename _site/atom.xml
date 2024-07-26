@@ -1,0 +1,2172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>herrkaefer</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000"/>
+ <updated>2024-07-26T15:30:55-05:00</updated>
+ <id>http://localhost:4000</id>
+ <author>
+   <name>herrkaefer</name>
+   <email>gloolar+blog@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Open folder or file with Sublime Text from Finder toolbar</title>
+   <link href="http://localhost:4000/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/"/>
+   <updated>2020-01-19T00:00:00-06:00</updated>
+   <id>http://localhost:4000/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/images/open-with-sublime.png&quot; style=&quot;zoom:100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;Make a light-weighted application with AppleScript.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1&quot;&gt;Step 1&lt;/h3&gt;
+
+&lt;p&gt;Create a new AppleScript script, input:&lt;/p&gt;
+
+&lt;div class=&quot;language-applescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Finder&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;selection&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;numElements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;numElements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;itemPath&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;POSIX&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;as &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;itemPath&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;POSIX&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Finder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;alias&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Terminal&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+			&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;do shell script&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/local/bin/subl &quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;quoted form&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;itemPath&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Error: No selection&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Export it as an application.&lt;/li&gt;
+  &lt;li&gt;Move it to “Application” folder.&lt;/li&gt;
+  &lt;li&gt;Cmd + Drag it to Finder’s toobar.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;step-2&quot;&gt;Step 2:&lt;/h3&gt;
+
+&lt;p&gt;Open System Preferences &amp;gt; Security &amp;amp; Privacy &amp;gt; Privacy &amp;gt; Accessibility, add your app to the list.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Python dev workflow on macOS</title>
+   <link href="http://localhost:4000/2018/10/24/python-dev-workflow-on-macos/"/>
+   <updated>2018-10-24T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2018/10/24/python-dev-workflow-on-macos</id>
+   <content type="html">&lt;p&gt;Here is the new workflow in place of the old popular one using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenvwrapper&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;tools&quot;&gt;Tools&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;&lt;strong&gt;pyenv&lt;/strong&gt;&lt;/a&gt; for Python version installation and switch&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pipenv.readthedocs.io/en/latest/&quot;&gt;&lt;strong&gt;Pipenv&lt;/strong&gt;&lt;/a&gt; for virtualenv creation and package management for each project&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/gtalarico/pipenv-pipes&quot;&gt;&lt;strong&gt;Pipenv-Pipes&lt;/strong&gt;&lt;/a&gt; for Pipenv environment switch&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Pipenv is the central tool. pyenv provides specific version of Python (and pip) for Pipenv to initialize its virtualenv. Pipes is just a handy tool for fast navigation between Pipenv’s virtualenvs (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenvwrapper&lt;/code&gt;’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workon&lt;/code&gt;), which may be built into Pipenv in the future.&lt;/p&gt;
+
+&lt;h2 id=&quot;basic-workflow&quot;&gt;Basic workflow&lt;/h2&gt;
+
+&lt;h3 id=&quot;pyenv&quot;&gt;pyenv&lt;/h3&gt;
+
+&lt;p&gt;To install:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;then add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eval &quot;$(pyenv init -)&quot;&lt;/code&gt; to shell (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.zshrc&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;To show available Python versions to install:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pyenv &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To install a Python version:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pyenv &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &amp;lt;version&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;pipenv&quot;&gt;Pipenv&lt;/h3&gt;
+
+&lt;p&gt;Install Pipenv:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pipenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To install environment with specific Python version other than system default, this version must exist in system, so we can use pyenv to install the version first, then switch to its context.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pyenv shell &amp;lt;version&amp;gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pipenv &lt;span class=&quot;nt&quot;&gt;--python&lt;/span&gt; &amp;lt;version&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After this, pyenv will be of no use because corresponding Python and pip have been installed into Pipenv’s context, unless you update to a new Python version.&lt;/p&gt;
+
+&lt;h2 id=&quot;tips&quot;&gt;Tips&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-pipfile-from-requirementstxt&quot;&gt;Create Pipfile from requirements.txt&lt;/h3&gt;
+
+&lt;p&gt;To use Pipenv for an old project with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; available, we can first&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pipenv &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pipfile&lt;/code&gt; will be automatically created from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt;, with all packages installed with specific version numbers.&lt;/p&gt;
+
+&lt;p&gt;Second, run&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pipenv graph
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;to show a dependency tree graph, from which we can identify less packages that &lt;strong&gt;we want&lt;/strong&gt;. Then we can manually edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pipfile&lt;/code&gt; to keep only these key packages. Note that it does not need to make a Pipfile without any redundant (i.e. all packages are leaf nodes in the dependency tree).&lt;/p&gt;
+
+&lt;p&gt;Last, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pipenv install&lt;/code&gt; again.&lt;/p&gt;
+
+&lt;h3 id=&quot;time-saving-with---skip-lock&quot;&gt;Time saving with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--skip-lock&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;uninstall-packages-that-are-not-in-pipfile&quot;&gt;Uninstall packages that are not in Pipfile&lt;/h3&gt;
+
+&lt;p&gt;Manually deleted packages in Pipfile would not be automatically uninstalled, we can use&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pipenv clean
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;sublime-text-syntax-highlighting-of-pipfile&quot;&gt;Sublime Text syntax highlighting of Pipfile&lt;/h3&gt;
+
+&lt;p&gt;(Tested for ST 3)&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Install package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TOML&lt;/code&gt; for TOML syntax highlighting. (Pipfile uses TOML format.)&lt;/li&gt;
+  &lt;li&gt;Install package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ApplySyntax&lt;/code&gt; for custom syntax hightlighting for non-default format&lt;/li&gt;
+  &lt;li&gt;Add the following to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ApplySyntax&lt;/code&gt; settings:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nl&quot;&gt;&quot;syntaxes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;syntax&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TOML/TOML&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;rules&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;file_path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;.*&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Pipfile$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;syntax&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;JavaScript/JSON&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;extensions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Pipfile.lock&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Create new text file from Finder toolbar</title>
+   <link href="http://localhost:4000/2018/03/14/create-new-text-file-from-finder-toolbar/"/>
+   <updated>2018-03-14T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2018/03/14/create-new-text-file-from-finder-toolbar</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/images/new_file_app_toolbar.png&quot; style=&quot;zoom:100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;problem&quot;&gt;Problem&lt;/h2&gt;
+
+&lt;p&gt;Under macOS, sometimes we want to make new text files directly in place while browsing some folders in Finder. Opening a text editor, creating a file, and saving it to the target path is not efficient in this situation. However there is no built-in context menu item to do this as in Windows.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;We can make an simple application from AppleScript, and place a shortcut in Finder’s toolbar. When you click the icon, a default text file will be created in current folder, and it will be in the status of renaming so that you can change the filename conveniently.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1&quot;&gt;Step 1&lt;/h3&gt;
+
+&lt;p&gt;Open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Script Editor&lt;/code&gt;, and create a new script with the following contents:&lt;/p&gt;
+
+&lt;div class=&quot;language-applescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;untitled&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_ext&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;.md&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;is_desktop&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-- get folder path and if we are in desktop (no folder opened)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Finder&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;this_folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Finder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;alias&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-- no open folder windows&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;this_folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;path to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;desktop&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;alias&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;is_desktop&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-- get the new file name (do not override an already existing file)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;System Events&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_list&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;every&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;disk&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;this_folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;new_file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_ext&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;repeat&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;new_file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;is in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_list&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;new_file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file_ext&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;repeat&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;repeat&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-- create and select the new file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Finder&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	
+	&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;activate&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;the_file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;this_folder&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;new_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;is_desktop&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;reveal&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;the_file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;desktop&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;selection&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;the_file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	
+	&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.4&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;-- press enter (rename)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;System Events&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Finder&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;keystroke&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tell&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;(Acknowledgement: The script is borrowed from &lt;a href=&quot;https://zeldor.biz/2017/12/mac-os-x-finder-new-file/comment-page-1/#comment-3681121&quot;&gt;this post&lt;/a&gt;. I did a little modification by adding a delay line to avoid wrong keystroke.)&lt;/p&gt;
+
+&lt;p&gt;Note that you can change the default filename and suffix in the first two lines. Here I set it as Markdown file.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-2&quot;&gt;Step 2&lt;/h3&gt;
+
+&lt;p&gt;Export the script as an Application, e.g. “NewTxtFileInFinder.app”, and put it in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Application&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-3&quot;&gt;Step 3&lt;/h3&gt;
+
+&lt;p&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Application&lt;/code&gt; folder, Drag the app to the Finder’s toolbar while holding the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;command&lt;/code&gt; button.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-4-optional&quot;&gt;Step 4 (optional)&lt;/h3&gt;
+
+&lt;p&gt;Turn off the annoying warning when changing the file suffix. This can be set in Finder’s Preference -&amp;gt; Advanced.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-5-optional&quot;&gt;Step 5 (optional)&lt;/h3&gt;
+
+&lt;p&gt;Change app icon to a beautiful and meaningful one.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Find or make a icon file with suffix &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;icns&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;In Finder, select the app, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cmd+i&lt;/code&gt; to show the info panel.&lt;/li&gt;
+  &lt;li&gt;Drag the icns file to the top-left to replace the icon.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;other-solutions&quot;&gt;Other solutions&lt;/h2&gt;
+
+&lt;p&gt;An app &lt;a href=&quot;https://langui.net/new-file-menu/&quot;&gt;New File Menu&lt;/a&gt; can add a context menu to Finder and can be used to create different documents like in Windows. It supports many formats besides text file though requires more clicks to create a new file.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Uno reinvented for 3-year-old kids</title>
+   <link href="http://localhost:4000/2017/11/15/uno-reinvented-for-3-year-old-kids/"/>
+   <updated>2017-11-15T00:00:00-06:00</updated>
+   <id>http://localhost:4000/2017/11/15/uno-reinvented-for-3-year-old-kids</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/images/uno.jpg&quot; alt=&quot;uno&quot; style=&quot;zoom:100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The playing rules of original Uno card are not designed for a 3 years old. Recently I created a “car driving” game using Uno cards. Children can learn and practice comparing numbers when playing the game.&lt;/p&gt;
+
+&lt;h2 id=&quot;story-of-the-game&quot;&gt;Story of the game&lt;/h2&gt;
+
+&lt;p&gt;The senario is simulating a car driving on the road. Players operate the car by playing the cards in turn to make it accelerate or decelerate, and follow the traffic signs.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Number cards: representing the speed of the car. The larger the number, the faster the car moves. Players should play card with a larger number if the car is accelerating, or a smaller number if it is decelerating.&lt;/li&gt;
+  &lt;li&gt;Action cards: represting traffic signs. If one player place a traffic sign, the next player should operate the car accordingly to follow the sign.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;traffic-signs-and-their-meanings&quot;&gt;Traffic signs and their meanings&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/uno-action-cards.jpg&quot; alt=&quot;uno&quot; style=&quot;zoom:100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Skip&lt;/strong&gt;: Stop. The car should reduce its speed as soon as possible. So the next player should play a smallest number in his/her hand, or a wild car and call its number. If no number or wild card is available, a traffic sign should be placed.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Reverse&lt;/strong&gt;: reversing the accelrating status. When the car is accelerating, it is goint to decelerate, and vise versa.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Wild&lt;/strong&gt;: It can represent any number card.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Draw 2&lt;/strong&gt;: +2. The next player should operate the car two times, i.e. place 2 cards (could include traffic signs)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Draw 4&lt;/strong&gt;: +4. The next player should operate the car four times, i.e. place 4 cards (could include traffic signs)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;rules&quot;&gt;Rules&lt;/h2&gt;
+
+&lt;p&gt;The youngest player play the first card (should be a number card) and shout out “faster!” or “slower!”. The next player could:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;play a number card, which should be larger if the car is accelerating, or smaller if it is decelerating.
+    &lt;ul&gt;
+      &lt;li&gt;a more strict rule is: to keep the car moves smooth, we should play a possible smallest number if it is accelerating, or a possible largest number if it is decelerating.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;place traffic sign to change the behavior of the car.&lt;/li&gt;
+  &lt;li&gt;play several cards if the previous card is “+2” or “+4”, and keep them correct.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dealing&quot;&gt;Dealing&lt;/h3&gt;
+
+&lt;p&gt;N (e.g. N=7) cards a round or dealing cards evenly beforehand. You can also share all the cards  with your kids. You decide.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Uno变身儿童数字游戏</title>
+   <link href="http://localhost:4000/2017/11/12/uno%E5%8F%98%E8%BA%AB%E5%84%BF%E7%AB%A5%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/"/>
+   <updated>2017-11-12T00:00:00-06:00</updated>
+   <id>http://localhost:4000/2017/11/12/uno变身儿童数字游戏</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/images/uno.jpg&quot; alt=&quot;uno&quot; style=&quot;zoom:100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对不到三岁的小朋友来说, Uno本来的规则有点太复杂了, 不过印着数字的花花绿绿的纸牌其实很适合教小孩学习数字. 基本的玩法当然是教小孩认识数字的形状和读法, 进而可以用一些游戏的方式教数字的相同/相等. 待这些都掌握之后, 接下来就可以过渡到数字的大小比较.&lt;/p&gt;
+
+&lt;p&gt;最近跟米米(瞎)玩牌的时候, 琢磨了一种可以练习数字比大小的游戏规则, 正好还可以用到Uno的功能牌, 给游戏增加乐趣. 后来又完善了一下, 记录在此.&lt;/p&gt;
+
+&lt;h2 id=&quot;游戏故事&quot;&gt;游戏故事&lt;/h2&gt;
+
+&lt;p&gt;小孩的游戏需要一个故事场景, 其中的行为和道具都具有特定的含义, 这会让让游戏更有吸引力和乐趣.&lt;/p&gt;
+
+&lt;p&gt;这个游戏的场景是&lt;strong&gt;模拟在路上开车&lt;/strong&gt; (因为交通标志的存在, 汽车比火车更合适一些). 玩家通过轮流出牌来交替开车, 把牌一张接一张排列下去, 表示车一路前进.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;数字牌&lt;/strong&gt;: 数字代表车的速度, 数字越大, 车速越快. 车不是在加速就是在减速. 车如果是在加速, 后面的数字牌就应该越来越大; 如果是在减速, 后面的数字牌就应该越来越小.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;功能牌&lt;/strong&gt;: 代表路上的”交通标志”, 决定接下来车应该怎么开 (比如加减速切换/停止). 出功能牌就是在路上设立交通标志, 下家需要遵守交通规则, 根据标志的指示来正确地出牌.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;游戏规则&quot;&gt;游戏规则&lt;/h2&gt;
+
+&lt;p&gt;游戏需要2人以上一起玩, 轮流出牌, 如果有人按规则无法打出正确的牌, 则判负出局, 其它人可以接着玩, 也可以重新开始.&lt;/p&gt;
+
+&lt;p&gt;随机决定谁先出牌. 第一张牌必须是一张数字牌, 出牌人同时需要喊出”加速”或者”减速”, 车就上路啦.&lt;/p&gt;
+
+&lt;p&gt;下家可以选择出数字牌或功能牌.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;出数字牌来继续加速或减速&lt;/strong&gt;. 如果车在加速, 就要出更大的牌; 如果在减速, 就要出更小的牌.
+    &lt;ul&gt;
+      &lt;li&gt;这里也可以使用一种更严格的规则: 为了安全, 应该让车不要加速/减速太快, 因此如果车在加速, 就要出手中最小的可以让车加速的牌; 如果是减速, 就要出最大的可以让车减速的牌.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;出功能牌来放置交通标志&lt;/strong&gt;. 不同功能牌的标志含义如下:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Uno的几种功能牌:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/uno-action-cards.jpg&quot; alt=&quot;uno&quot; style=&quot;zoom:100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Draw 2: +2. 下家需要连出2张牌 (可以包含功能牌).&lt;/li&gt;
+  &lt;li&gt;Draw 4: +4. 下家需要连出4张牌 (可以包含功能牌).&lt;/li&gt;
+  &lt;li&gt;Skip: 停止. 车要立即减速, 下家需要出手中最小的一张牌让车速最快地降到最低. 或者可以出一张万能牌同时说出它代表的数字. 如果手中最小的牌比前面的数字牌还大 (无法减速), 就只好出一张功能牌来设定新的标志.&lt;/li&gt;
+  &lt;li&gt;Reverse: 加减速反转. 即加速变减速, 减速变加速.&lt;/li&gt;
+  &lt;li&gt;Wild: 万能牌. 可以替代任何数字牌使用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;发牌方式&quot;&gt;发牌方式&lt;/h3&gt;
+
+&lt;p&gt;至于怎么发牌, 想了几种方式, 可根据实际效果自由选择:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;方式1: 洗牌后扣起来, 轮流摸牌, 每人手中拿n张(n为7或更多)的牌.
+    &lt;ul&gt;
+      &lt;li&gt;可以n张为一个回合, 一个回合结束后会有一个赢的人. 然后再摸n张牌开始新的回合. 怎么累积回合输赢决定最终谁获胜, 可以自己来决定.&lt;/li&gt;
+      &lt;li&gt;也可以随出随摸, 保持手中为n张牌, 直到决出胜负.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;方式2: 洗牌后等分, 然后开始游戏.&lt;/li&gt;
+  &lt;li&gt;方式3: 所有牌都正面向上摊开, 所有人都在里面随便取.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;方式2和3比较适合和小朋友随意玩耍, 因为限制太少, 可以一直玩到没有牌为止, 但也因为缺少激励, 容易玩腻😀.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>自动转发Twitter到微博</title>
+   <link href="http://localhost:4000/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/"/>
+   <updated>2017-11-06T00:00:00-06:00</updated>
+   <id>http://localhost:4000/2017/11/06/自动转发twitter到微博</id>
+   <content type="html">&lt;p&gt;在Twitter上关注了几个图片账号, 比如&lt;a href=&quot;https://twitter.com/HistoryInPix&quot;&gt;@HistoryInPix&lt;/a&gt;, 经常想把一些有趣的图文转发到微博, 但操作起来却麻烦. 闲来无聊, 就做了个小机器人来自动把感兴趣的账号发的推全部转发到微博的某个账号(&lt;a href=&quot;https://weibo.com/u/6401135522&quot;&gt;@图中看史&lt;/a&gt;)里, 这样在微博里就可以关注和转发了. 简单记录一下过程.&lt;/p&gt;
+
+&lt;p&gt;Open source: &lt;a href=&quot;https://github.com/herrkaefer/twitter2weibo&quot;&gt;GitHub: twitter2weibo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;准备工作&quot;&gt;准备工作&lt;/h2&gt;
+
+&lt;p&gt;首先, 在Twitter和微博的开发平台上注册成为开发者, 并分别创建应用.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.twitter.com/&quot;&gt;Twitter开发平台&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://open.weibo.com/&quot;&gt;微博开放平台&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Twitter上很简单, 创建即生效, 直接拿到四个值: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;consumer_key&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;consumer_secret&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token_secret&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;微博上就有点麻烦, 因为需要官方审核. 因此需要做一个简单网页, 放上微博组件, 审核通过后才可以让第三方账号(开发者之外的账号)使用.&lt;/p&gt;
+
+&lt;p&gt;在微博开发平台的”基本信息”里, 得到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;App Key&lt;/code&gt;和&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;App Secret&lt;/code&gt;. 在”高级信息”的授权回调页可以填: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1/callback&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;接下来, 可以在iPython里顺序执行下面一次性授权工作, 得到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;token&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;weibo&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://127.0.0.1/callback&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;API_KEY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;API_SECRET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REDIRECT_URI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;authorize_url&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;在浏览器打开授权页, 在地址栏里拷贝得到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;xxxxxxxxx&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;得到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;token&lt;/code&gt;后便可以保存到script中以供使用.&lt;/p&gt;
+
+&lt;p&gt;然后还需要注册一个微博”接收账号”, 用于发布微博.&lt;/p&gt;
+
+&lt;h2 id=&quot;在vps上配置python环境&quot;&gt;在VPS上配置Python环境&lt;/h2&gt;
+
+&lt;p&gt;使用第三方库&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tweepy&lt;/code&gt;和&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;weibo&lt;/code&gt;, 来分别调用Twitter和微博的API.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;tweepy weibo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;脚本&quot;&gt;脚本&lt;/h2&gt;
+
+&lt;p&gt;基本流程: 从多个关注的Twitter账号抓取新的推文及图片, 然后发到微博账号.&lt;/p&gt;
+
+&lt;p&gt;建立一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appcofig.py&lt;/code&gt;私有文件, 存放Twitter和微博应用的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;secret&lt;/code&gt;等参数.&lt;/p&gt;
+
+&lt;p&gt;使用pickle存储每个Twitter账号最后转发的tweet的时间.&lt;/p&gt;
+
+&lt;h2 id=&quot;定期执行&quot;&gt;定期执行&lt;/h2&gt;
+
+&lt;p&gt;在VPS上, 使用Cron来做即可.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;crontab &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;添加任务:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;10 * * * * python /home/herrkaefer/twitter2weibo/twitter2weibo.py &amp;gt;&amp;gt; /home/herrkaefer/twitter2weibo/log.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;含义是每小时的10分执行一次, 并log到文件中.&lt;/p&gt;
+
+&lt;p&gt;在本次执行时, 应该检测脚本是否已经在执行中, 如果已经在执行则退出. 为了实现这一点, 可借用一个临时文件来判断. 在每次执行前:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pidfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/tmp/twitter2weibo.pid&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isfile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pidfile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pidfile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;w&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;正常执行后:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unlink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pidfile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;限制&quot;&gt;限制&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;微博每天有user rate limit, 不能太频繁, 但具体限制是多少, 官方文档中语焉不详. 目前设为3分钟发一条, 转发的Twitter账号数量很少, 看起来没问题.&lt;/li&gt;
+  &lt;li&gt;微博API只允许发一张图片, 因此推文含多图的, 只能转发第一张.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Handle annoying operations of objects in Realm DB</title>
+   <link href="http://localhost:4000/2017/06/12/handle-annoying-operations-of-objects-in-realm-db/"/>
+   <updated>2017-06-12T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2017/06/12/handle-annoying-operations-of-objects-in-realm-db</id>
+   <content type="html">&lt;h1 id=&quot;problem&quot;&gt;Problem&lt;/h1&gt;
+
+&lt;p&gt;Update value of object in Realm DB is annoying because the task should be within a writing transition.&lt;/p&gt;
+
+&lt;h1 id=&quot;solution&quot;&gt;Solution&lt;/h1&gt;
+
+&lt;p&gt;Extend the Realm’s Object class to provide convient methods to do these things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt;: to set/update properties’ values.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remove&lt;/code&gt;: to remove object from Realm&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// RealmHelper.swift&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;RealmSwift&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Update property value in Realm&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;realm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try!&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Realm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try!&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;realm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;forKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// Remove object from Realm&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;realm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try!&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Realm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try!&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;realm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;realm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;!--&lt;script src=&quot;https://gist.github.com/herrkaefer/6e3ac0e561daaac8f3887166fee2bf11.js&quot;&gt;&lt;/script&gt;
+--&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Move Jekyll blog to Ubuntu VPS</title>
+   <link href="http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps/"/>
+   <updated>2017-02-20T00:00:00-06:00</updated>
+   <id>http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps</id>
+   <content type="html">&lt;p&gt;(Tested on: Linode with Ubuntu 16.04 LTS)&lt;/p&gt;
+
+&lt;h1 id=&quot;install-jekyll-on-ubuntu-vps&quot;&gt;Install Jekyll on Ubuntu VPS&lt;/h1&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; upgrade
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ruby ruby-dev ruby-bundler zlib1g-dev build-essential make gcc git jekyll bundler
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;automated-deployment-with-git&quot;&gt;Automated deployment with Git&lt;/h1&gt;
+
+&lt;p&gt;On VPS,&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; ~/blog.git &lt;span class=&quot;c&quot;&gt;# the site source&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; ~/www/blog &lt;span class=&quot;c&quot;&gt;# the built site&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Setup git hook to automatically build the site whenever after site source is updated:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/blog.git
+git init &lt;span class=&quot;nt&quot;&gt;--bare&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;hooks/post-update.sample hooks/post-receive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--bare&lt;/code&gt; means that our folder will have no source files, just the version control.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hooks/post-receive&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;GIT_REPO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/blog.git
+&lt;span class=&quot;nv&quot;&gt;TMP_GIT_CLONE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/tmp/blog
+&lt;span class=&quot;nv&quot;&gt;PUBLIC_WWW&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/www/blog
+
+git clone &lt;span class=&quot;nv&quot;&gt;$GIT_REPO&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$TMP_GIT_CLONE&lt;/span&gt;
+jekyll build &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$TMP_GIT_CLONE&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PUBLIC_WWW&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Rf&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$TMP_GIT_CLONE&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;serve-static-site-with-nginx&quot;&gt;Serve static site with Nginx&lt;/h1&gt;
+
+&lt;p&gt;Install nginx:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add a configuration:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/nginx/conf.d/blog.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;with content:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
+  # listen on http (port 80)
+  # remove the &quot;default_server&quot; if you are running multiple sites off the same VPS
+  listen 80 default_server;
+
+  # the IP address of your VPS
+  server_name herrkaefer.com;
+  # see http://nginx.org/en/docs/http/server_names.html for options
+  # to use your own domain, point a DNS A record at this IP address
+  # and set the server name to (eg.) &quot;blog.example.com&quot;
+
+  # the path you deployed to. this should match whatever was in your
+  # Capistrano deploy file, with &quot;/current&quot; appended to the end
+  # (Capistrano symlinks to this to your current site)
+  root /home/herrkaefer/www/blog;
+  index index.html
+
+  # how long should static files be cached for, see http://nginx.org/en/docs/http/ngx_http_headers_module.html for options.
+  expires 1d;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then remove default config file and restart Nginx:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo rm /etc/nginx/sites-enabled/default
+sudo systemctl restart nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Remember to allow Nginx port if the firewall is enabled.&lt;/p&gt;
+
+&lt;h1 id=&quot;local-machine-setup&quot;&gt;Local machine setup&lt;/h1&gt;
+
+&lt;p&gt;On local machine, in Jekyll repo folder, add remote repository:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;jekyll_blog_folder]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Show remotes:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add remote named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add web username@[host]:~/blog.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you need to specify other SSH port, you should do:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add web ssh://username@[host]:[port][absolutePathTo]/blog.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh://&lt;/code&gt; can not be omitted.&lt;/p&gt;
+
+&lt;h1 id=&quot;write-and-publish&quot;&gt;Write and publish&lt;/h1&gt;
+
+&lt;p&gt;After writing,&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git commit -am &quot;blog updated&quot;
+git push web master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;troubleshoot&quot;&gt;Troubleshoot&lt;/h1&gt;
+
+&lt;h2 id=&quot;nginx-403-forbidden&quot;&gt;Nginx 403 Forbidden&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.jianshu.com/p/e0dadb871894&quot;&gt;nginx 403 Forbidden 排错记录 - 简书&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Introducing Mole</title>
+   <link href="http://localhost:4000/2016/11/09/introducing-mole/"/>
+   <updated>2016-11-09T00:00:00-06:00</updated>
+   <id>http://localhost:4000/2016/11/09/introducing-mole</id>
+   <content type="html">&lt;p&gt;After writing the last post &lt;a href=&quot;http://herrkaefer.online/workflow/2016/10/17/note-taking-without-note-taking-app/&quot;&gt;Note taking without note taking app&lt;/a&gt;, I found that manipulating documents via a minimal UI would be more efficient than via command lines. So in the past two weeks I learned Electron and wrote a app (current only for macOS), called Mole. Here is the &lt;a href=&quot;https://github.com/herrkaefer/Mole&quot;&gt;homepage&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The app is not perfect yet, especially in performance. I already have some ideas  in mind that could fix it. I have exported all my text notes out from other note taking / writing apps (wish this was the last time I did this kind of thing). From now on, I will continue use Mole myself, and improve it.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Note taking without note taking app</title>
+   <link href="http://localhost:4000/2016/10/17/note-taking-without-note-taking-app/"/>
+   <updated>2016-10-17T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/10/17/note-taking-without-note-taking-app</id>
+   <content type="html">&lt;h2 id=&quot;why-i-do-not-use-a-note-app&quot;&gt;Why I do not use a note app&lt;/h2&gt;
+
+&lt;p&gt;Evernote, Quiver, Simplenote, …, They are all good and I have used them a lot. But now I uninstalled them all. Why?&lt;/p&gt;
+
+&lt;p&gt;Some main reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I prefer to see the note files saved individually in a well used, open, and transparent format, rather than mysterious or private formats defined by the apps themselves.&lt;/li&gt;
+  &lt;li&gt;I prefer to use my favourite editor rather than the integrated editor reinvented by the apps.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In a word, IMHO, current note taking apps do too much for a note taking job. But could we manage to take notes without the apps and lose no convenience?&lt;/p&gt;
+
+&lt;h2 id=&quot;note-format&quot;&gt;Note format&lt;/h2&gt;
+
+&lt;p&gt;I decide to use &lt;a href=&quot;https://github.com/fletcher/MultiMarkdown/wiki/MultiMarkdown-Syntax-Guide&quot;&gt;multimarkdown&lt;/a&gt; because it supports metadata included as part of the document and meanwhile not part of the real contents.&lt;/p&gt;
+
+&lt;p&gt;The metadata is a kind of front matter like in &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;Jekyll post&lt;/a&gt;, which describes any infomation you want to add to the document.&lt;/p&gt;
+
+&lt;p&gt;Considering a note, the following four variables seems necessary:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;A Note&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2016-10-17&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Cool&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;workflow, app, mac&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I restrict the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category&lt;/code&gt; to be only one string, as it is equal to the subfolder name.&lt;/p&gt;
+
+&lt;p&gt;And more variables I’d like to add:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;last: last modification date&lt;/li&gt;
+  &lt;li&gt;comments: true or false&lt;/li&gt;
+  &lt;li&gt;summary: a brief summary of the note&lt;/li&gt;
+  &lt;li&gt;published: if published to Jekyll blog&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;manage-notes&quot;&gt;Manage notes&lt;/h2&gt;
+
+&lt;p&gt;Finder + Dropbox.&lt;/p&gt;
+
+&lt;p&gt;Simply use Finder for note browsing, and Dropbox for syncing to the cloud.&lt;/p&gt;
+
+&lt;p&gt;Set a root folder in Dropbox for all notes, e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;Dropbox/Notes&quot;&lt;/code&gt;. Let’s call it &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notesdir&lt;/code&gt;. Drag it to stay at the side column for quick access.&lt;/p&gt;
+
+&lt;p&gt;Then add subfolders as categories. Add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uncategorized&lt;/code&gt; subfolder for uncategorized notes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tips&lt;/strong&gt;: in finder, use list (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cmd+2&lt;/code&gt;) or column (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cmd+3&lt;/code&gt;) view to browse note files is (maybe) sufficiently convenient. I prefer the column view, but remember to use the this trick: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Option+drag&lt;/code&gt; to resize the column width to show a lentgh file name, and to let Finder remember the size. Unfortunately the width of all columns must be the same, which is a little ugly, and, this width setting is globally on the mac.&lt;/p&gt;
+
+&lt;h2 id=&quot;edit-note&quot;&gt;Edit note&lt;/h2&gt;
+
+&lt;p&gt;Set in Finder to open and edit the note with your favourite Markdown editor. (I use &lt;a href=&quot;http://macdown.uranusjr.com/&quot;&gt;MacDown&lt;/a&gt; and &lt;a href=&quot;http://www.typora.io/&quot;&gt;Typora&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;h2 id=&quot;create-note&quot;&gt;Create note&lt;/h2&gt;
+
+&lt;p&gt;I write a simple shell script to do this. It make a new note file and fill it with initial front matter.&lt;/p&gt;
+
+&lt;p&gt;The script is &lt;a href=&quot;https://gist.github.com/herrkaefer/8c4b84b07e565d8e2ff5e649e55d8f95&quot;&gt;here&lt;/a&gt;. Save it as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;newnote.sh&lt;/code&gt; and move it to a bash recognized path.&lt;/p&gt;
+
+&lt;p&gt;Usage:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;newnote.sh title category
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;title&lt;/code&gt; is required. Remember to quote it if spaces exist.&lt;/li&gt;
+  &lt;li&gt;If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category&lt;/code&gt; is empty, it will be ‘uncategorized`.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The note file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notesdir/category/title.md&lt;/code&gt; will be created (if it does not exist) and opened for edit.&lt;/p&gt;
+
+&lt;h2 id=&quot;publish-note-as-jekyll-post&quot;&gt;Publish note as Jekyll post&lt;/h2&gt;
+
+&lt;p&gt;Here I need another script to do the job:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Copy the note to Jekyll project’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; folder.&lt;/li&gt;
+  &lt;li&gt;Rename note file to Jekyll required format: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.md&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Modify the front matter accordingly, e.g.
+    &lt;ul&gt;
+      &lt;li&gt;modify/add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout&lt;/code&gt; variable&lt;/li&gt;
+      &lt;li&gt;modify/add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;last&lt;/code&gt; variable&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Sync with blog server&lt;/li&gt;
+  &lt;li&gt;Add and set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;published&lt;/code&gt; variable to true for the original note&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;publishnote.sh&lt;/code&gt;: (to add later)&lt;/p&gt;
+
+&lt;h2 id=&quot;do-we-need-a-new-kind-of-note-taking-app-again&quot;&gt;Do we need a new kind of note taking app, again?&lt;/h2&gt;
+
+&lt;p&gt;How about writing a new kind of app which implements the above workflow with a minimal UI, and enhance the user experience much?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Concentrated and user-friendly note browser&lt;/li&gt;
+  &lt;li&gt;Click buttons or press shortcuts to add, edit, delete, publish, …&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Essentially, the app should be a better replacement of Finder for note browsing, integrated with some common note operations. I think maybe it is worthwhile to implement such an UI. Consider doing it later :-)&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Deploy Python web application on Ubuntu server</title>
+   <link href="http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/"/>
+   <updated>2016-10-08T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server</id>
+   <content type="html">&lt;p&gt;Components used for this article:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;VPS: &lt;a href=&quot;https://www.linode.com/&quot;&gt;Linode&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;OS: &lt;strong&gt;Ubuntu 14.04 LTS&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Web server: &lt;a href=&quot;http://nginx.org/&quot;&gt;Nginx&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;WSGI server: &lt;a href=&quot;http://gunicorn.org/&quot;&gt;Gunicorn&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Application framework: &lt;a href=&quot;http://docs.pylonsproject.org/en/latest/docs/pyramid.html#pyramid-documentation&quot;&gt;Pyramid&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Relational database: &lt;a href=&quot;https://www.postgresql.org/&quot;&gt;PostgreSQL&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;NoSQL data store: &lt;a href=&quot;http://redis.io/&quot;&gt;Redis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Python version: 3.4&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Suppose that we already installed an Ubuntu image on a Linode plan.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-packages&quot;&gt;Update packages&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;dns-resolution&quot;&gt;DNS resolution&lt;/h2&gt;
+
+&lt;p&gt;Add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A record&lt;/code&gt; for the domain name of the application.&lt;/p&gt;
+
+&lt;h2 id=&quot;nginx&quot;&gt;Nginx&lt;/h2&gt;
+
+&lt;h3 id=&quot;install-nginx&quot;&gt;Install Nginx&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;configure-ngnix&quot;&gt;Configure Ngnix&lt;/h3&gt;
+
+&lt;p&gt;Create a cofiguration file under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/nginx/conf.d/&lt;/code&gt; with name &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[app_name].conf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/nginx/conf.d/[app_name].conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;configure-without-https&quot;&gt;Configure without https&lt;/h4&gt;
+
+&lt;p&gt;Template of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/nginx/conf.d/[app_name].conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upstream app_server_wsgiapp {
+    server localhost:8000 fail_timeout=0;
+}
+
+server {
+    listen 80;
+    # make sure to change the next line to your own domain name!
+    server_name appname.example.com;
+    access_log /var/log/nginx/appname.access.log;
+    error_log /var/log/nginx/appname.error.log info;
+    keepalive_timeout 5;
+
+    # nginx serve up static files and never send to the WSGI server
+    location /static {
+        autoindex on;
+        alias /home/username/appname/static;
+    }
+
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            if (!-f $request_filename) {
+                proxy_pass http://app_server_wsgiapp;
+                break;
+            }
+    }
+
+    # this section allows Nginx to reverse proxy for websockets
+    location /socket.io {
+        proxy_pass http://app_server_wsgiapp/socket.io;
+        proxy_redirect off;
+        proxy_buffering off;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;Upgrade&quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;configure-with-https&quot;&gt;Configure with https&lt;/h4&gt;
+
+&lt;p&gt;(to add)&lt;/p&gt;
+
+&lt;h4 id=&quot;restart-nginx&quot;&gt;Restart nginx&lt;/h4&gt;
+
+&lt;p&gt;Delete default website file:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo rm&lt;/span&gt; /etc/nginx/sites-enabled/default
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Apply new configuration:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;service nginx restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;postgresql&quot;&gt;PostgreSQL&lt;/h2&gt;
+
+&lt;p&gt;Install PostgreSQL&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;postgresql libpq-dev postgresql-client-common postgresql-client
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;then create database and new user&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# switch to postgres user&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;su - postgres
+
+&lt;span class=&quot;c&quot;&gt;# create database&lt;/span&gt;
+createdb dbname
+
+&lt;span class=&quot;c&quot;&gt;# create a non-root database user and set password&lt;/span&gt;
+createuser &lt;span class=&quot;nt&quot;&gt;--superuser&lt;/span&gt; username
+psql
+ALTER USER username WITH PASSWORD &lt;span class=&quot;s1&quot;&gt;&apos;password&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;(For me, it seems that the last line would take effect, but we can change the password later.)&lt;/p&gt;
+
+&lt;p&gt;Press &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CTRL-D&lt;/code&gt; to quit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psql&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CTRL-D&lt;/code&gt; again to quit postgres user.&lt;/p&gt;
+
+&lt;p&gt;Now database &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dbname&lt;/code&gt; is created and user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;username&lt;/code&gt; is able to access the database.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Connect to database&lt;/span&gt;
+psql dbname
+
+&lt;span class=&quot;c&quot;&gt;# Show tables&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;t
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Change password of current user:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;assword
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;redis&quot;&gt;Redis&lt;/h2&gt;
+
+&lt;p&gt;Install Redis&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;redis-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Test using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redis-cli&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;python-application&quot;&gt;Python application&lt;/h2&gt;
+
+&lt;h3 id=&quot;install-pip-virtualenv&quot;&gt;Install pip, virtualenv&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python3-pip
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python3.4-venv
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;virtualenv virtualenvwrapper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3.4-venv&lt;/code&gt; not &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3-venv&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;make-virtualenv&quot;&gt;Make virtualenv&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# set an environment variable to where you want your virtual environment&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;VENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;~/env
+&lt;span class=&quot;c&quot;&gt;# create the virtual environment&lt;/span&gt;
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv &lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Upgrade packages in virtualenv&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip setuptools
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;“Why use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$VENV/bin/pip&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source bin/activate&lt;/code&gt;, then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;?” From Pyramid docs:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$VENV/bin/pip clearly specifies that pip is run from within the virtual environment and not at the system level.&lt;/p&gt;
+
+  &lt;p&gt;activate drops turds into the user’s shell environment, leaving them vulnerable to executing commands in the wrong context. deactivate might not correctly restore previous shell environment variables.&lt;/p&gt;
+
+  &lt;p&gt;Although using source bin/activate, then pip, requires fewer key strokes to issue commands once invoked, there are other things to consider. Michael F. Lamb (datagrok) presents a summary in Virtualenv’s bin/activate is Doing It Wrong.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ultimately we prefer to keep things clear and simple, so we use $VENV/bin/pip.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;pyramid&quot;&gt;Pyramid&lt;/h3&gt;
+
+&lt;p&gt;Install Pyramid&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# install pyramid&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyramid
+&lt;span class=&quot;c&quot;&gt;# or for a specific released version&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pyramid==1.7.3&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;demo-app&quot;&gt;Demo app&lt;/h3&gt;
+
+&lt;p&gt;We create a demo app using scaffold provided by Pyramid.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/pcreate &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; starter demo
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;demo
+&lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;wsgi-server&quot;&gt;WSGI server&lt;/h2&gt;
+
+&lt;p&gt;Install Gunicorn&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;gunicorn
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run the demo app:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/demo
+&lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/gunicorn &lt;span class=&quot;nt&quot;&gt;--paste&lt;/span&gt; development.ini &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; :8000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;8000&lt;/code&gt; is the port gunicorn listens from the nginx reverse proxy, which we set in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/nginx/conf.d/demo.conf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Open a browser and visit the URL and the app should be running.&lt;/p&gt;
+
+&lt;h3 id=&quot;start-gunicorn-server-with-supervisor&quot;&gt;Start gunicorn server with supervisor&lt;/h3&gt;
+
+&lt;p&gt;Install supervisor&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;supervisor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Configure supervisor. Create a file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/supervisor/conf.d/[app_name].conf&lt;/code&gt;, and add lines: (e.g., for demo app, the file name should be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demo.conf&lt;/code&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[program:demo] 
+environment=DEBUG=False
+command=/home/[username]/venv/bin/gunicorn --paste [path/to/app/]development.ini -b :8000 --chdir [path/to/app]
+directory=/home/[username]/demo 
+user=[username]
+autostart=true 
+autorestart=true
+redirect_stderr=True
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Start supervisor service:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;service supervisor start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Visit the URL and the app should be running.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Setup Shadowsocks / VPN on Ubuntu Server</title>
+   <link href="http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/"/>
+   <updated>2016-10-06T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/giraffe.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(Environment: Ubuntu 16.04 LTS installed on VPS such as Linode)&lt;/p&gt;
+
+&lt;h2 id=&quot;install-and-run-shadowsocks-on-server&quot;&gt;Install and run Shadowsocks on server&lt;/h2&gt;
+
+&lt;p&gt;I put the following process into a shell script. Check this &lt;strong&gt;“one-click” method&lt;/strong&gt;: &lt;a href=&quot;https://github.com/herrkaefer/giraffe&quot;&gt;giraffe&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;install-shadowsocks&quot;&gt;Install Shadowsocks&lt;/h3&gt;
+
+&lt;p&gt;Update packages:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Install pip and m2crypto:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python-pip
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python-m2crypto
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Install shadowsocks:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;setuptools
+pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;shadowsocks
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If locale error happens:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LC_ALL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;C
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;configue-shadowsocks&quot;&gt;Configue Shadowsocks&lt;/h3&gt;
+
+&lt;p&gt;Create a config file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/shadowsocks.json&lt;/code&gt; as:&lt;/p&gt;
+
+&lt;p&gt;For single user:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;server&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_server_ip&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;server_port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8388&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;local_address&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;local_port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1080&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;mypassword&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;timeout&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;aes-256-cfb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;fast_open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For multiple users:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;server&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.0.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;port_password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;8381&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ps1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;8382&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ps2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;8383&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ps3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;8384&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ps4&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;timeout&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;aes-256-cfb&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;start-shadowsocks-server&quot;&gt;Start Shadowsocks server&lt;/h3&gt;
+
+&lt;p&gt;Run shadowsocks server as daemon:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssserver &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/shadowsocks.json &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Stop SS server:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssserver &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/shadowsocks.json &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; stop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Restart:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssserver &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/shadowsocks.json &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;auto-start-after-system-reboot&quot;&gt;Auto start after system reboot&lt;/h3&gt;
+
+&lt;p&gt;You can start SS server manually with the above command every time the system powers on, or find a way to let it auto started.&lt;/p&gt;
+
+&lt;p&gt;There is a method: add the above start command in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/rc.local&lt;/code&gt; before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit 0&lt;/code&gt; line. However it does not work for me and I don’t know why.&lt;/p&gt;
+
+&lt;p&gt;Supervisor can do this job.&lt;/p&gt;
+
+&lt;p&gt;Install supervisor:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;supervisor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create a supervisor config file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/supervisor/conf.d/shadowsocks.conf&lt;/code&gt; with contents:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[program:shadowsocks]
+command=ssserver -c /etc/shadowsocks.json -d start
+autostart=true
+autorestart=true
+user=root
+log_stderr=true
+logfile=/var/log/shadowsocks.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then start (or restart) supervisor:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;service supervisor start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And the server part is done.&lt;/p&gt;
+
+&lt;h3 id=&quot;update-kernel-and-install-bbr-acceleration-for-kernel-version--49&quot;&gt;Update kernel and install BBR acceleration (for kernel version &amp;lt; 4.9)&lt;/h3&gt;
+
+&lt;p&gt;ref: &lt;a href=&quot;https://teddysun.com/489.html&quot;&gt;一键安装最新内核并开启 BBR 脚本&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Check kernal version&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;uname&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;--no-check-certificate&lt;/span&gt; https://github.com/teddysun/across/raw/master/bbr.sh
+&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x bbr.sh
+./bbr.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;mac-client&quot;&gt;Mac client&lt;/h2&gt;
+
+&lt;p&gt;Download: &lt;a href=&quot;https://github.com/shadowsocks/shadowsocks-iOS/releases&quot;&gt;ShadowsocksX&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;automatically-update-pac-file&quot;&gt;Automatically update pac file&lt;/h3&gt;
+
+&lt;p&gt;(Problem: ShadowsocksX client update pac file from GFWList failed.)&lt;/p&gt;
+
+&lt;p&gt;Download a shell script from &lt;a href=&quot;https://gist.github.com/VincentSit/b5b112d273513f153caf23a9da112b3a&quot;&gt;here&lt;/a&gt; and name it &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update_gfwlist.sh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x update_gfwlist.sh
+&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;update_gfwlist.sh /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then you can manually run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update_gfwlist.sh&lt;/code&gt;, or schedule a daily job:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;EDITOR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;nano
+crontab &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and add a line:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Update GFWList PAC file for ShadowsocksX at 10:30 everyday&lt;/span&gt;
+30 10 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; sh /usr/local/bin/update_gfwlist.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will automatically update the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.ShadowsocksX/gfwlist.js&lt;/code&gt; everyday at 10:30 am.&lt;/p&gt;
+
+&lt;h3 id=&quot;iterm&quot;&gt;iTerm&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools&quot;&gt;Using Shadowsocks with Command Line Tools&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ios-client&quot;&gt;iOS client&lt;/h2&gt;
+
+&lt;h3 id=&quot;wingy&quot;&gt;Wingy&lt;/h3&gt;
+
+&lt;p&gt;Thanks to NEKit, there’s perfect way for iOS user.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Wingy - Http(s),Socks5 Proxy Utility 作者是 SMART LIMITED&lt;/p&gt;
+
+  &lt;p&gt;App Store: &lt;a href=&quot;https://itunes.apple.com/us/app/wingy-http-s-socks5-proxy-utility/id1178584911?mt=8&quot;&gt;Wingy&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;share-proxy-from-mac-within-lan&quot;&gt;Share proxy from Mac within LAN&lt;/h3&gt;
+
+&lt;p&gt;(&lt;strong&gt;This approach is not recommended now&lt;/strong&gt;)&lt;/p&gt;
+
+&lt;p&gt;For iOS,  the following method is OK for home use if you have an idle or long-time working Mac.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1&lt;/strong&gt;: make Mac a http proxy with privoxy&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;privoxy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Edit config file: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/local/etc/privoxy/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;line “forward-socks5t / …” -&amp;gt; “forward-socks5t / 127.0.0.1:1080”&lt;/li&gt;
+  &lt;li&gt;line “listen-address 127.0.0.1:8118” -&amp;gt; “listen-address 0.0.0.0:6666” (6666 is a custom unused port)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Start privoxy:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/sbin/privoxy &lt;span class=&quot;nt&quot;&gt;--no-daemon&lt;/span&gt; /usr/local/etc/privoxy/config &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: make Mac a pac server&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Make a folder to be served by nginx and copy the pac file into it:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; /usr/local/share/pac
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; ~/.ShadowsocksX/gfwlist.js /usr/local/share/pac/proxy.pac
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;proxy.pac&lt;/code&gt;, change the line “var proxy = …” to:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var proxy = &quot;PROXY [IP_of_Mac]:6666; DIRECT;&quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that 6666 is the port you configured for privoxy.&lt;/p&gt;
+
+&lt;p&gt;Then add a nginx configuration file in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/local/etc/nginx/servers&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    listen       8000&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    location / &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        root   /usr/local/share/pac&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        index  index.html index.htm&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Start nginx:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew services start nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On iPhone, in WiFi’s http proxy auto mode, add:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://[IP_of_Mac]:8000/proxy.pac
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can also fix the IP of Mac by configuring the router.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-and-running-ipsec-vpn-server&quot;&gt;Install and running IPsec VPN server&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README-zh.md&quot;&gt;IPsec VPN 服务器一键安装脚本&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Linode Notes - Basic Setup</title>
+   <link href="http://localhost:4000/2016/10/05/linode-notes-basic-setup/"/>
+   <updated>2016-10-05T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/10/05/linode-notes--basic-setup</id>
+   <content type="html">&lt;h2 id=&quot;buy-a-linode-plan&quot;&gt;Buy a Linode plan&lt;/h2&gt;
+
+&lt;p&gt;For location, Tokyo is not available now, and I choose Newark based on &lt;a href=&quot;https://www.linode.com/speedtest&quot;&gt;speed test&lt;/a&gt; (rather than Fremont).&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;Ref: &lt;a href=&quot;https://www.linode.com/docs/getting-started&quot;&gt;Getting Started with Linode&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;deploy-an-image&quot;&gt;Deploy an image&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;At &lt;a href=&quot;https://manager.linode.com/&quot;&gt;Linode manager&lt;/a&gt;, enter the dashboard of linode plan.&lt;/li&gt;
+  &lt;li&gt;Select “Deploy an Image”. Choose Ubuntu Long Term Support (LTS) release, e.g. Ubuntu 16.04 LTS.&lt;/li&gt;
+  &lt;li&gt;Set a password for root user (at least 6 characters long).&lt;/li&gt;
+  &lt;li&gt;Click “Deploy” button.&lt;/li&gt;
+  &lt;li&gt;When job finished, click “Boot” to power on.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;connect-to-the-server&quot;&gt;Connect to the server&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh root@[IP]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The IP address can be find in the “Remote Access” panel. Enter the password to log in.&lt;/p&gt;
+
+&lt;h3 id=&quot;basic-settings&quot;&gt;Basic settings&lt;/h3&gt;
+
+&lt;p&gt;Upgrade packages&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Set hostname&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hostname&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /etc/hostname
+
+&lt;span class=&quot;c&quot;&gt;# Set hostname from file&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; /etc/hostname
+
+&lt;span class=&quot;c&quot;&gt;# Verify hostname&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Edit hosts file&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nano /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and add a line:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[IP address] [Fully Qualified Domain Name (FQDN)] hostname
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The value you assign as your system’s FQDN should have an “A” record in DNS pointing to your Linode’s IPv4 address.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;(Save and close file after editing with nano: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CTRL-X&lt;/code&gt;, then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Y&lt;/code&gt;, then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ENTER&lt;/code&gt;.)&lt;/p&gt;
+
+&lt;p&gt;Set timezone:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dpkg-reconfigure tzdata
+
+&lt;span class=&quot;c&quot;&gt;# Check time&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;securing-your-server&quot;&gt;Securing Your Server&lt;/h2&gt;
+
+&lt;p&gt;Ref: &lt;a href=&quot;https://www.linode.com/docs/security/securing-your-server#use-fail2ban-for-ssh-login-protection&quot;&gt;Securing Your Server&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;add-a-limited-user-account&quot;&gt;Add a Limited User Account&lt;/h3&gt;
+
+&lt;p&gt;Create user:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;adduser example_user
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add user to sudo group:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;adduser example_user &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Switch to example_user:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;exit
+&lt;/span&gt;ssh example_user@[IP]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;authentication-by-ssh-key-pair&quot;&gt;Authentication by SSH key pair&lt;/h3&gt;
+
+&lt;p&gt;On local machine,&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Press Enter three times to use default filenames and empty passphrase.&lt;/p&gt;
+
+&lt;p&gt;Two files &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id_rsa&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id_rsa.pub&lt;/code&gt; are generated in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/your_username/.ssh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On Linode,&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; ~/.ssh &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo chmod&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; 700 ~/.ssh/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Upload public key to server:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp ~/.ssh/id_rsa.pub example_user@[IP]:~/.ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Exit and log into Linode again. No password is needed now.&lt;/p&gt;
+
+&lt;h3 id=&quot;adjust-ssh-settings&quot;&gt;Adjust SSH settings&lt;/h3&gt;
+
+&lt;p&gt;Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Disable SSH password authentication
+PasswordAuthentication no
+
+# Disable PAM authentication
+UsePAM no
+
+# Disallow root logins over SSH
+PermitRootLogin no
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Apply new ssh configurations:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart sshd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;use-fail2ban-for-ssh-login-protection&quot;&gt;Use Fail2Ban for SSH Login Protection&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;fail2ban
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;remove-unused-network-facing-services&quot;&gt;Remove Unused Network-Facing Services&lt;/h3&gt;
+
+&lt;p&gt;To see your Linode’s running network services:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo netstat -tulpn
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And remove unused services accordingly.&lt;/p&gt;
+
+&lt;h3 id=&quot;enable-the-firewall&quot;&gt;Enable the Firewall&lt;/h3&gt;
+
+&lt;p&gt;Refs:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw&quot;&gt;https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands&quot;&gt;UFW Essentials: Common Firewall Rules and Commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tools&quot;&gt;Tools&lt;/h2&gt;
+
+&lt;h3 id=&quot;zsh&quot;&gt;zsh&lt;/h3&gt;
+
+&lt;p&gt;Ref: &lt;a href=&quot;https://gist.github.com/tsabat/1498393&quot;&gt;Getting oh-my-zsh to work in Ubuntu&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Prereq:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;zsh
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;git-core
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Getting zsh to work in ubuntu is weird, since sh does not understand the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt; command. So, you do this to install zsh&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; - | zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and then you change your shell to zsh&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chsh &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;which zsh&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and then reboot&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;shutdown &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Because the default theme does not show hostname, we may want to change a theme (&lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh/wiki/Themes&quot;&gt;zsh themes&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.zshrc&lt;/code&gt; file&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ZSH_THEME=&quot;alanpeabody&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;cyberduck-for-file-transfer&quot;&gt;Cyberduck for File transfer&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;a href=&quot;https://cyberduck.io/&quot;&gt;Cyberduck&lt;/a&gt;: &lt;a href=&quot;https://www.linode.com/docs/tools-reference/file-transfer/transfer-files-with-cyberduck-on-mac-os-x&quot;&gt;Transfer Files with Cyberduck on Mac OS X&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;install-desktop&quot;&gt;Install desktop&lt;/h3&gt;
+
+&lt;p&gt;Ref: &lt;a href=&quot;https://www.linode.com/docs/applications/remote-desktop/install-vnc-on-ubuntu-16-04&quot;&gt;Install VNC on Ubuntu 16.04&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Install full desktop:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or, install desktop environments without full packages (no tools like office and browser, small size, however there exists coding problem for Chinese font):&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--no-install-recommends&lt;/span&gt; ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;During the install process, you will be asked whether or not to change a system file to the new version. Type &lt;strong&gt;y&lt;/strong&gt; then &lt;strong&gt;enter&lt;/strong&gt; to use the updated version.&lt;/p&gt;
+
+&lt;p&gt;Install VNC server:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;vnc4server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Exit and reconnect with command:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 5901:127.0.0.1:5901 user@[IP]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;start vnc server (for first time, set a password after prompt):&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vncserver :1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then connect with &lt;a href=&quot;https://www.realvnc.com/download/viewer/&quot;&gt;VNC viewer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ignore the “unencrypted connection” message. And a gray screen showed.&lt;/p&gt;
+
+&lt;p&gt;Close VNC server:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vncserver &lt;span class=&quot;nt&quot;&gt;-kill&lt;/span&gt; :1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.vnc/xstartup&lt;/code&gt; file to add a few lines to the end:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gnome-panel &amp;amp;
+gnome-settings-daemon &amp;amp;
+metacity &amp;amp;
+nautilus &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Start VNC server again and connect from client. Desktop should show.&lt;/p&gt;
+
+&lt;p&gt;In case that VNC viewer shows connection error: “Too many Security Failures”, restart the server:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vncserver &lt;span class=&quot;nt&quot;&gt;-kill&lt;/span&gt; :1
+vncserver :1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;install-chrome&quot;&gt;Install Chrome&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.earngurus.com/install-chrome-browser-in-linux-or-ubuntu-vps/&quot;&gt;How To Install Chrome Browser In Linux Or Ubuntu VPS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h2&gt;
+
+&lt;h3 id=&quot;perl-locale-warning&quot;&gt;Perl locale warning&lt;/h3&gt;
+
+&lt;p&gt;like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+    LANGUAGE &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
+    LC_ALL &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
+    LANG &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;en_US.UTF-8&quot;&lt;/span&gt;
+are supported and installed on your system.
+perl: warning: Falling back to the standard locale &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;C&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Solution: comment out line from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;AcceptEnv LANG LC_*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ref: &lt;a href=&quot;http://stackoverflow.com/questions/2499794/how-can-i-fix-a-locale-warning-from-perl&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>CLASS Style Adapted for Embedded Systems</title>
+   <link href="http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems/"/>
+   <updated>2016-09-10T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems</id>
+   <content type="html">&lt;h2 id=&quot;class-c-coding-style&quot;&gt;CLASS C Coding style&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://rfc.zeromq.org/spec:21/CLASS/&quot;&gt;CLASS&lt;/a&gt; is “C Language Style for Scalability” developed by Pieter Hintjens:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The C Language Style for Scalability (CLASS) defines a consistent style and organization for scalable C library and application code built on modern C compilers and operating systems. CLASS aims to collect industry best practice into one reusable standard.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;CLASS is all about writing APIs. Types and functions are grouped by tasks. I have used this style to write C codes after reading the unfinished book &lt;a href=&quot;https://www.gitbook.com/book/hintjens/scalable-c/details&quot;&gt;“Scalable C”&lt;/a&gt;, and it makes writing C code a great fun.&lt;/p&gt;
+
+&lt;h2 id=&quot;problem&quot;&gt;Problem&lt;/h2&gt;
+
+&lt;p&gt;Recently I am developing some algorithms in C targeted at embedded system where static memory is used instead of dynamic heap memory. So I tried to adapt the CLASS style to the embedded version.&lt;/p&gt;
+
+&lt;p&gt;To avoid use of heap memory, we need to re-consider the following issues:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How to create object with adjustable parameters?&lt;/li&gt;
+  &lt;li&gt;How to initialize object with parameters?&lt;/li&gt;
+  &lt;li&gt;How to return memory block in APIs?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Below is my initial solution.&lt;/p&gt;
+
+&lt;h2 id=&quot;class-for-embedded-system-classes&quot;&gt;CLASS for Embedded System (CLASSES)&lt;/h2&gt;
+
+&lt;p&gt;I wrote a skeleton project for demonstration purpose. &lt;a href=&quot;https://github.com/herrkaefer/embedded-c-boilerplate&quot;&gt;embedded-c-boilerplate &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;. The following of this post is basically explanations of the codes. Let’s take a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buffer&lt;/code&gt; class for example.&lt;/p&gt;
+
+&lt;h3 id=&quot;parameter-configuration-with-a-separate-header-file&quot;&gt;Parameter configuration with a separate header file&lt;/h3&gt;
+
+&lt;p&gt;Instead of creating object dynamically with input parameters in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new()&lt;/code&gt;, we turn to use macros to define parameters in advance.&lt;/p&gt;
+
+&lt;p&gt;For each class, use a separate &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myclass.ini&lt;/code&gt; file to allow the class user to define parameters to configure the object. These parameters are essential to object creation and initialization.&lt;/p&gt;
+
+&lt;p&gt;For example, in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buffer.ini&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define BUFFER_SIZE 128
+#define BUFFER_PARAM_A 1
+#define BUFFER_PARAM_B 9.4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can comment any line to use the default value. Default values are defined in .h file (explained bellow).&lt;/p&gt;
+
+&lt;p&gt;Then include this file before the class header file.&lt;/p&gt;
+
+&lt;p&gt;This approach is invasive because if you change parameters recompiling is necessary. However, it is still helpful for separating configuration from code. You could change parameters without going deeply into the class implementations.&lt;/p&gt;
+
+&lt;h3 id=&quot;parameter-regularization&quot;&gt;Parameter regularization&lt;/h3&gt;
+
+&lt;p&gt;For each parameter essential to object creation and initialization:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Define &lt;strong&gt;default parameter&lt;/strong&gt; which can be overrided by user defined value in cfg file (the .ini file).&lt;/li&gt;
+  &lt;li&gt;Typecast it to &lt;strong&gt;inner representation&lt;/strong&gt; prefixed by a underscore.&lt;/li&gt;
+  &lt;li&gt;Perform &lt;strong&gt;static assertion&lt;/strong&gt; to verify that the value is within correct range.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These are done in the class header. For the buffer example, in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buffer.h&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&quot;buffer.ini&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 32
+#endif
+#define _BUFFER_SIZE (size_t) BUFFER_SIZE
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ct_assert&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_BUFFER_SIZE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;#ifndef BUFFER_PARAM_A
+#define BUFFER_PARAM_A 2
+#endif
+#define _BUFFER_PARAM_A (int) BUFFER_PARAM_A
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ct_assert&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_BUFFER_PARAM_A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;#ifndef BUFFER_PARAM_B
+#define BUFFER_PARAM_B 7.0
+#endif
+#define _BUFFER_PARAM_B (double) BUFFER_PARAM_B
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ct_assert&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_BUFFER_PARAM_B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ct_assert&lt;/code&gt; macro does compile-time assertion of to verify that the parameter is within the correct range, which is defined as below:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define ct_assert3(COND,MSG) typedef char static_assertion_failed_at_line_##MSG[(!!(COND))*2-1]
+#define ct_assert2(COND,MSG) ct_assert3(COND,MSG)
+#define ct_assert(COND) ct_assert2(COND,__LINE__)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From this step on, we will use parameters with inner representations (for structure defination and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt;, see bellow), e.g.&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_BUFFER_SIZE&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BUFFER_SIZE&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-structure-defination&quot;&gt;Data structure defination&lt;/h3&gt;
+
+&lt;p&gt;Structure defination has to be public in the header file, as for embedded application, object is instantiated statically, and the compiler needs to know its size.&lt;/p&gt;
+
+&lt;p&gt;This is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buffer_t&lt;/code&gt; structure:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_BUFFER_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;param_a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;param_b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buffer_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buffer_t&lt;/code&gt; is a new defined struct type. To instantiate it, or define a variable:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;buffer_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;object-initialization&quot;&gt;Object initialization&lt;/h3&gt;
+
+&lt;p&gt;Constructor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new()&lt;/code&gt; and destructor &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;free()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destroy()&lt;/code&gt; are no longer needed. Instead, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt; API is added for initializing object, e.g.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Initialize buffer object&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;buffer_init&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buffer_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt;, we&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use parameters with &lt;strong&gt;inner representation&lt;/strong&gt; (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_BUFFER_SIZE&lt;/code&gt;) to initialize corresponding properties.&lt;/li&gt;
+  &lt;li&gt;Assign parameter to variable if you need to access it later. &lt;strong&gt;The idea is: using of parameter macros should stop after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt;. In other APIs, we do not see the macros any more.&lt;/strong&gt; Instead, we use the parameter variables. Of course, this approach will cost a little more memory than using macros directly.&lt;/li&gt;
+  &lt;li&gt;For other properties, try to initialize them to default values (0/false/NULL)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt; should be called once before you use the object.&lt;/p&gt;
+
+&lt;p&gt;For example,&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;buffer_init&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buffer_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;memset&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_BUFFER_SIZE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_BUFFER_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;param_a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_BUFFER_PARAM_A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;param_b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_BUFFER_PARAM_B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;apis-design-guide&quot;&gt;APIs design guide&lt;/h2&gt;
+
+&lt;h3 id=&quot;naming-conventions&quot;&gt;Naming conventions&lt;/h3&gt;
+
+&lt;p&gt;This is the same as in CLASS style. Every API should accept the pointer of the object as the first parameter, followed by other parameters:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;myclass_mymethod&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myobject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;initialization&quot;&gt;Initialization&lt;/h3&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;myclass_init&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myclass_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Constructor (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new()&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create()&lt;/code&gt;) and destructor (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;free()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destroy()&lt;/code&gt;) are no longer needed. Instead we add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt; to do initilization works, which has been explained above.&lt;/p&gt;
+
+&lt;p&gt;Initialize the object once before you use it:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;myclass&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myobject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;myclass_init&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myobject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;getter-and-setter&quot;&gt;Getter and setter&lt;/h3&gt;
+
+&lt;p&gt;Though you can manipulate properties directly as the structure is public, doing these via getter and setter APIs are recommended. You should &lt;strong&gt;pretend&lt;/strong&gt; that the structure implementation is hidden, and never manipulate properties directly.&lt;/p&gt;
+
+&lt;p&gt;It is not necessary to write getter and setter for every property. For const properties, do not provide a setter.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-apis&quot;&gt;Other APIs&lt;/h3&gt;
+
+&lt;p&gt;APIs for real works, e.g.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;buffer_push&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buffer_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;no-heap-memory-allocation&quot;&gt;No heap memory allocation&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Avoid using dynamic memory allocation, e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;malloc()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alloc()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To return memory block, use &lt;strong&gt;inout parameter&lt;/strong&gt; rather than memory block dynamically allocated inside the function.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, to calculate the squared root of every element in a buffer, we write a function as:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;buffer_sqrt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buffer_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It is better to indicate the inout parameter by name such as &lt;strong&gt;“output”&lt;/strong&gt; in the API declaration, and note it in the comment.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Squared root of buffer data.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Return result in param output.&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;buffer_sqrt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buffer_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;problems-and-limitations&quot;&gt;Problems and limitations&lt;/h2&gt;
+
+&lt;h3 id=&quot;same-class-defination-multiple-configuraton&quot;&gt;Same class defination, multiple configuraton&lt;/h3&gt;
+
+&lt;p&gt;For example, you need two buffers with different length in a program. It seems not easy to realize if the configuration is related to memory allocation, which is done during compiling stage. Buffers with differnt length should actually be viewed as instances of different classes.&lt;/p&gt;
+
+&lt;h3 id=&quot;building-and-using-libraries&quot;&gt;Building and using libraries&lt;/h3&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>psycopgr Tutorial</title>
+   <link href="http://localhost:4000/2016/09/01/psycopgr-tutorial/"/>
+   <updated>2016-09-01T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/09/01/psycopgr-tutorial</id>
+   <content type="html">&lt;h2 id=&quot;what-is-psycopgr&quot;&gt;What is psycopgr&lt;/h2&gt;
+
+&lt;p&gt;psycopgr &lt;a href=&quot;https://github.com/herrkaefer/psycopgr&quot;&gt;&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt; is a Python wrapper of &lt;a href=&quot;http://pgrouting.org/&quot;&gt;pgRouting&lt;/a&gt; written by me.&lt;/p&gt;
+
+&lt;p&gt;As said in &lt;a href=&quot;http://workshop.pgrouting.org/2.1.0-dev/en/chapters/wrapper.html&quot;&gt;pgRouting docs&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Just considering the different ways that the cost can be calculated, makes it almost impossible to create a general wrapper, that can work on all applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Indeed, in many applicatons you may need to modify the database tables and fill some computed values to fit your specific purpose, which is often done in a preprocessing stage by SQL, before real routing starts working. It is not appropriate to be wrapped.&lt;/p&gt;
+
+&lt;p&gt;However, after preprocessing things such as database creation, map data import, tables re-calculation and update, you are ready to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psycopgr&lt;/code&gt; to do another simple thing: &lt;strong&gt;computing optimal routes from nodes to nodes on real map, in Python.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psycopgr&lt;/code&gt; is never a general purpose wrapper of pgRouting. I am a novice in GIS and what I want from this tool is just routes (with lowest costs) from places to places without writing a single line of SQL.&lt;/p&gt;
+
+&lt;p&gt;For preprocessing stage, I have a post &lt;a href=&quot;/2016/08/30/pgrouting-notes/&quot;&gt;“pgRouting notes”&lt;/a&gt; for my own reference. Before enjoyable Python coding, you have to prepare a few stuffs.&lt;/p&gt;
+
+&lt;h2 id=&quot;tutorial&quot;&gt;Tutorial&lt;/h2&gt;
+
+&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Prepare a PostgreSQL database, install PostGIS and pgRouting extensions, and import map data to database. &lt;a href=&quot;/2016/08/30/pgrouting-notes/&quot;&gt;“pgRouting notes”&lt;/a&gt; is a practical guide.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Update database tables according to your specific requirement.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;install-psycopgr&quot;&gt;Install psycopgr&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;psycopgr
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;(Yes, it is on &lt;a href=&quot;https://pypi.org/project/psycopgr/&quot;&gt;PyPI&lt;/a&gt; now.)&lt;/p&gt;
+
+&lt;p&gt;Or,&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pipenv &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;psycopgr
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As you may guessed from the name, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psycopgr&lt;/code&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psycopg2&lt;/code&gt; as PostgreSQL driver. The above command will install it automatically.&lt;/p&gt;
+
+&lt;h3 id=&quot;steps&quot;&gt;Steps&lt;/h3&gt;
+
+&lt;p&gt;First,&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;psycopgr&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PgrNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PGRouting&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create an PGRouting instance with database connection:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pgr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PGRouting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;mydb&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;user&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Adjust meta datas of tables including the edge table properies if they are different from the default (only the different properties needs to be set), e.g.:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pgr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_meta_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;cost_s&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reverse_cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;reverse_cost_s&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;directed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is the default meta datas:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;table&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;ways&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;gid&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;source&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;source&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;target&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;target&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;cost&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;cost_s&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# driving time in second
+&lt;/span&gt;    &lt;span class=&quot;s&quot;&gt;&apos;reverse_cost&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;reverse_cost_s&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# reverse driving time in second
+&lt;/span&gt;    &lt;span class=&quot;s&quot;&gt;&apos;x1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;x1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;y1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;y1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;x2&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;x2&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;y2&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;y2&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;geometry&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;the_geom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;has_reverse_cost&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;directed&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&apos;srid&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4326&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Prepare nodes. nodes are represented by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PgrNode&lt;/code&gt; namedtuple with geographic coordinates rather than vertex id (vid) in the tables. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PgrNodes&lt;/code&gt; is defined as:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;PgrNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namedtuple&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;PgrNode&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;lon&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;lat&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;in which &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; could be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;None&lt;/code&gt; or self-defined value, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lon&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lat&lt;/code&gt; are double precision values. Of course nodes could be input from various interfaces such as database or another program.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PgrNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;116.30150&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;40.05500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;PgrNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;116.36577&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;40.00253&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;PgrNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;116.30560&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;39.95458&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;PgrNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;116.46806&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;39.99857&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we can do routings:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# many-to-many
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;routings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pgr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end_speed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pgx_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;r.pgx&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# one-to-one
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;routings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pgr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# one-to-many
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;routings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pgr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# many-to-one
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;routings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pgr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;end_speed&lt;/code&gt;: speed from node to nearest vertices on ways in unit km/h.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gpx_file&lt;/code&gt;: set it to output paths to a gpx file.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The returned is a dict of dict: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{(start_node, end_node): {&apos;path&apos;: [PgrNode], &apos;cost&apos;: cost}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;By default, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cost&lt;/code&gt; is traveling time along the path in unit second. It depends on the means of columns of the edge table that you set as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cost&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reverse_cost&lt;/code&gt;. You can assign the relations by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set_meta_data&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;p&gt;We can also get only costs without detailed paths returned:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;costs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pgr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_costs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The returned is also a dict: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{(start_node, end_node): cost}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;low-level-wrapper-of-pgrouting-functions&quot;&gt;Low-level wrapper of pgRouting functions&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;psycopgr function&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;pgRouting function&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;dijkstra&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;pgr_dijkstra&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;dijkstra_cost&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;pgr_dijkstraCost&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;astar&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;pgr_astar&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;These are direct wrappings of pgRouting functions. For example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dijkstra&lt;/code&gt; takes vertex ids as input. This list may be extended in the future.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>pgRouting Notes</title>
+   <link href="http://localhost:4000/2016/08/30/pgrouting-notes/"/>
+   <updated>2016-08-30T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/08/30/pgrouting-notes</id>
+   <content type="html">&lt;h2 id=&quot;install-postgis-and-pgrouting&quot;&gt;Install PostGIS and pgRouting&lt;/h2&gt;
+
+&lt;h3 id=&quot;on-mac&quot;&gt;On Mac&lt;/h3&gt;
+
+&lt;p&gt;The following will install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pgRouting&lt;/code&gt; and its dependencies including &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PostGIS&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PostgreSQL&lt;/code&gt; if not installed:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pgrouting
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;on-linux&quot;&gt;On Linux&lt;/h3&gt;
+
+&lt;p&gt;(to add)&lt;/p&gt;
+
+&lt;h2 id=&quot;install-osm2pgrouting&quot;&gt;Install osm2pgrouting&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/pgRouting/osm2pgrouting&quot;&gt;osm2pgrouting&lt;/a&gt; is for importing OSM data into PostgreSQL database, and creating routable topology.&lt;/p&gt;
+
+&lt;p&gt;It is said that osm2pgrouting has limitation:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Can’t process “large” files, continents, big countries, or very large states.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For large files, we can use &lt;a href=&quot;http://osm2po.de/&quot;&gt;osm2po&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;install-via-homebrew-mac&quot;&gt;Install via homebrew (Mac)&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;osm2pgrouting
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that a mapconfig.xml file is at: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/local/Cellar/osm2pgrouting/[version]/share/osm2pgrouting/mapconfig.xml&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;manually-install-the-lastest-version&quot;&gt;Manually install the lastest version&lt;/h3&gt;
+
+&lt;p&gt;(The following notes are based on version 2.1. Now with homebrew you can already install the latest version.)&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Download code from &lt;a href=&quot;https://github.com/pgRouting/osm2pgrouting&quot;&gt;repo&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Modify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMakeLists.txt&lt;/code&gt; to install app to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/local/bin&lt;/code&gt; and other files to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/local/share&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;line 5 —&amp;gt; set (SHARE_DIR “/usr/local/share/osm2pgrouting”)&lt;/li&gt;
+      &lt;li&gt;line 36 —&amp;gt; RUNTIME DESTINATION “/usr/local/bin”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Add the following headers to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/way.h&lt;/code&gt; (otherwise there will be errors)&lt;/p&gt;
+
+    &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;sstream&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Build and install&lt;/p&gt;
+
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; cmake &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Bbuild&lt;/span&gt;
+ &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build/
+ make
+ make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;workflow&quot;&gt;Workflow&lt;/h2&gt;
+
+&lt;h3 id=&quot;prepare-database&quot;&gt;Prepare database&lt;/h3&gt;
+
+&lt;p&gt;Create new database if needed:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;createdb routing
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For each database that postgis and pgrouting are used, we should install corresponding extensions:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;psql routing &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;create extension postgis&quot;&lt;/span&gt;
+psql routing &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;create extension pgrouting&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For test of installation:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;psql routing &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;SELECT postgis_full_version()&quot;&lt;/span&gt;
+psql routing &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;SELECT pgr_version()&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;import-openstreetmap-data&quot;&gt;Import OpenStreetMap data&lt;/h3&gt;
+
+&lt;p&gt;OSM map data can be downloaded in &lt;a href=&quot;https://learnosm.org/en/osm-data/getting-data/&quot;&gt;many places&lt;/a&gt;. We are interested in the &lt;strong&gt;OSM XML&lt;/strong&gt; format.&lt;/p&gt;
+
+&lt;p&gt;To import map data to database:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;osm2pgrouting &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; beijing_china.osm &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--conf&lt;/span&gt; /usr/local/Cellar/osm2pgrouting/[version]/share/osm2pgrouting/mapconfig.xml &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--dbname&lt;/span&gt; routing &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;username] &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--clean&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are adding data, do not use flag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--clean&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We could browse the tables with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psql&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pgAdmin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;psql mydb &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;t&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;notes-for-tables&quot;&gt;Notes for tables&lt;/h4&gt;
+
+&lt;p&gt;Two main tables:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ways&lt;/code&gt;: stores the edges&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ways_vertices_pgr&lt;/code&gt;: stores the end nodes of edges&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Meanings of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ways&lt;/code&gt; columns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;length&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;length_m&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cost&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reverse_cost&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cost_s&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reverse_cost_s&lt;/code&gt;. According to post &lt;a href=&quot;https://gis.stackexchange.com/questions/198200/how-are-cost-and-reverse-cost-computed-in-pgrouting/201451#201451&quot;&gt;here&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;length&lt;/code&gt; is length of the segment in degree units&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cost&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reverse_cost&lt;/code&gt; is the length in degree units. (include the negative values for wrong way)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;length_m&lt;/code&gt; is in meters (there is no cost_m or reverse_cost_m)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cost_s&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reverse_cost_s&lt;/code&gt; is in time: seconds units (using the maxspeed value that is in km/hr transforming it to meters/second and using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;length_m&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;do-routings-in-sql&quot;&gt;Do routings in SQL&lt;/h3&gt;
+
+&lt;p&gt;Now we can calculate routes with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pgRouting&lt;/code&gt;. For example, to calculate one-to-one shortest path:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pgr_dijkstra&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&apos;SELECT gid as id, source, target, cost, reverse_cost FROM ways&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;TRUE&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://docs.pgrouting.org/&quot;&gt;pgRouting Manuals&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;do-routings-in-python&quot;&gt;Do routings in Python&lt;/h3&gt;
+
+&lt;p&gt;I bet that You don’t want to write SQLs. Good news here if you like writing Python! I wrote a &lt;a href=&quot;https://github.com/herrkaefer/psycopgr&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psycopgr&lt;/code&gt;&lt;/a&gt; Python module to encapsulate database connection (via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psycopg2&lt;/code&gt;) and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pgRouting&lt;/code&gt; callings. Here is a &lt;a href=&quot;/2016/09/01/psycopgr-tutorial/&quot;&gt;tutorial&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>PostgreSQL Notes</title>
+   <link href="http://localhost:4000/2016/08/15/postgresql-notes/"/>
+   <updated>2016-08-15T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/08/15/postgresql-notes</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.postgresql.org/docs/9.5/static/index.html&quot;&gt;Official Documentation&lt;/a&gt; and &lt;a href=&quot;https://www.postgresql.org/docs/9.5/static/tutorial.html&quot;&gt;Tutorial&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;install-and-run&quot;&gt;Install and run&lt;/h2&gt;
+
+&lt;h3 id=&quot;mac&quot;&gt;Mac&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;postgresql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Make sure that brew service is installed&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew tap homebrew/services
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Start PostgreSQL as a background service: (will start automatically at login)&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew services start postgresql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;stop and restart:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew services stop &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;restart] postgresql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;linux&quot;&gt;Linux&lt;/h3&gt;
+
+&lt;p&gt;(to add)&lt;/p&gt;
+
+&lt;h2 id=&quot;tools&quot;&gt;Tools&lt;/h2&gt;
+
+&lt;h3 id=&quot;administrative-front-ends&quot;&gt;Administrative front-ends&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;command line tool: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psql&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;graphical tool: &lt;a href=&quot;https://www.pgadmin.org/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pgAdmin&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;gis&quot;&gt;GIS&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.qgis.org/en/site/&quot;&gt;QGIS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;psql&quot;&gt;psql&lt;/h2&gt;
+
+&lt;h3 id=&quot;two-basic-modes&quot;&gt;Two basic modes&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Connect to a database and entering SQL Commands&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;psql mydb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;then execute commands for the database.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use psql directly&lt;/p&gt;
+
+    &lt;p&gt;For example:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;psql mydb &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\l&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+psql mydb &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[command]&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;basic-meta-commands&quot;&gt;Basic meta-commands&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;list databases: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\l&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;list tables: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\dt&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;show columns: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\d table&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;quit: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\q&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Full &lt;a href=&quot;https://www.postgresql.org/docs/9.5/static/app-psql.html&quot;&gt;doc&lt;/a&gt; here.&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

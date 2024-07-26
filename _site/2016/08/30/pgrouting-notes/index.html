@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - pgRouting Notes</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2016/08/30/pgrouting-notes/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  August 30, 2016
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">pgRouting Notes</h1>
+
+<div id="post">
+  <h2 id="install-postgis-and-pgrouting">Install PostGIS and pgRouting</h2>
+
+<h3 id="on-mac">On Mac</h3>
+
+<p>The following will install <code class="language-plaintext highlighter-rouge">pgRouting</code> and its dependencies including <code class="language-plaintext highlighter-rouge">PostGIS</code>, and <code class="language-plaintext highlighter-rouge">PostgreSQL</code> if not installed:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>pgrouting
+</code></pre></div></div>
+
+<h3 id="on-linux">On Linux</h3>
+
+<p>(to add)</p>
+
+<h2 id="install-osm2pgrouting">Install osm2pgrouting</h2>
+
+<p><a href="https://github.com/pgRouting/osm2pgrouting">osm2pgrouting</a> is for importing OSM data into PostgreSQL database, and creating routable topology.</p>
+
+<p>It is said that osm2pgrouting has limitation:</p>
+
+<blockquote>
+  <p>Can’t process “large” files, continents, big countries, or very large states.</p>
+</blockquote>
+
+<p>For large files, we can use <a href="http://osm2po.de/">osm2po</a>.</p>
+
+<h3 id="install-via-homebrew-mac">Install via homebrew (Mac)</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>osm2pgrouting
+</code></pre></div></div>
+
+<p>Note that a mapconfig.xml file is at: <code class="language-plaintext highlighter-rouge">/usr/local/Cellar/osm2pgrouting/[version]/share/osm2pgrouting/mapconfig.xml</code></p>
+
+<h3 id="manually-install-the-lastest-version">Manually install the lastest version</h3>
+
+<p>(The following notes are based on version 2.1. Now with homebrew you can already install the latest version.)</p>
+
+<ol>
+  <li>
+    <p>Download code from <a href="https://github.com/pgRouting/osm2pgrouting">repo</a></p>
+  </li>
+  <li>Modify <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> to install app to <code class="language-plaintext highlighter-rouge">/usr/local/bin</code> and other files to <code class="language-plaintext highlighter-rouge">/usr/local/share</code>
+    <ul>
+      <li>line 5 —&gt; set (SHARE_DIR “/usr/local/share/osm2pgrouting”)</li>
+      <li>line 36 —&gt; RUNTIME DESTINATION “/usr/local/bin”</li>
+    </ul>
+  </li>
+  <li>
+    <p>Add the following headers to <code class="language-plaintext highlighter-rouge">src/way.h</code> (otherwise there will be errors)</p>
+
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span> <span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span> <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Build and install</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cmake <span class="nt">-H</span><span class="nb">.</span> <span class="nt">-Bbuild</span>
+ <span class="nb">cd </span>build/
+ make
+ make <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="workflow">Workflow</h2>
+
+<h3 id="prepare-database">Prepare database</h3>
+
+<p>Create new database if needed:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>createdb routing
+</code></pre></div></div>
+
+<p>For each database that postgis and pgrouting are used, we should install corresponding extensions:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql routing <span class="nt">-c</span> <span class="s2">"create extension postgis"</span>
+psql routing <span class="nt">-c</span> <span class="s2">"create extension pgrouting"</span>
+</code></pre></div></div>
+
+<p>For test of installation:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql routing <span class="nt">-c</span> <span class="s2">"SELECT postgis_full_version()"</span>
+psql routing <span class="nt">-c</span> <span class="s2">"SELECT pgr_version()"</span>
+</code></pre></div></div>
+
+<h3 id="import-openstreetmap-data">Import OpenStreetMap data</h3>
+
+<p>OSM map data can be downloaded in <a href="https://learnosm.org/en/osm-data/getting-data/">many places</a>. We are interested in the <strong>OSM XML</strong> format.</p>
+
+<p>To import map data to database:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osm2pgrouting <span class="nt">--file</span> beijing_china.osm <span class="se">\</span>
+<span class="nt">--conf</span> /usr/local/Cellar/osm2pgrouting/[version]/share/osm2pgrouting/mapconfig.xml <span class="se">\</span>
+<span class="nt">--dbname</span> routing <span class="se">\</span>
+<span class="nt">--username</span> <span class="o">[</span>username] <span class="se">\</span>
+<span class="nt">--clean</span>
+</code></pre></div></div>
+
+<p>If you are adding data, do not use flag <code class="language-plaintext highlighter-rouge">--clean</code>.</p>
+
+<p>We could browse the tables with <code class="language-plaintext highlighter-rouge">psql</code> or <code class="language-plaintext highlighter-rouge">pgAdmin</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql mydb <span class="nt">-c</span> <span class="s2">"</span><span class="se">\d</span><span class="s2">t"</span>
+</code></pre></div></div>
+
+<h4 id="notes-for-tables">Notes for tables</h4>
+
+<p>Two main tables:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ways</code>: stores the edges</li>
+  <li><code class="language-plaintext highlighter-rouge">ways_vertices_pgr</code>: stores the end nodes of edges</li>
+</ul>
+
+<p>Meanings of <code class="language-plaintext highlighter-rouge">ways</code> columns <code class="language-plaintext highlighter-rouge">length</code>, <code class="language-plaintext highlighter-rouge">length_m</code>, <code class="language-plaintext highlighter-rouge">cost</code>, <code class="language-plaintext highlighter-rouge">reverse_cost</code>, <code class="language-plaintext highlighter-rouge">cost_s</code>, <code class="language-plaintext highlighter-rouge">reverse_cost_s</code>. According to post <a href="https://gis.stackexchange.com/questions/198200/how-are-cost-and-reverse-cost-computed-in-pgrouting/201451#201451">here</a>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">length</code> is length of the segment in degree units</li>
+  <li><code class="language-plaintext highlighter-rouge">cost</code> and <code class="language-plaintext highlighter-rouge">reverse_cost</code> is the length in degree units. (include the negative values for wrong way)</li>
+  <li><code class="language-plaintext highlighter-rouge">length_m</code> is in meters (there is no cost_m or reverse_cost_m)</li>
+  <li><code class="language-plaintext highlighter-rouge">cost_s</code> and <code class="language-plaintext highlighter-rouge">reverse_cost_s</code> is in time: seconds units (using the maxspeed value that is in km/hr transforming it to meters/second and using the <code class="language-plaintext highlighter-rouge">length_m</code>)</li>
+</ul>
+
+<h3 id="do-routings-in-sql">Do routings in SQL</h3>
+
+<p>Now we can calculate routes with <code class="language-plaintext highlighter-rouge">pgRouting</code>. For example, to calculate one-to-one shortest path:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pgr_dijkstra</span><span class="p">(</span>
+    <span class="s1">'SELECT gid as id, source, target, cost, reverse_cost FROM ways'</span><span class="p">,</span>
+    <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="k">TRUE</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><a href="http://docs.pgrouting.org/">pgRouting Manuals</a></p>
+
+<h3 id="do-routings-in-python">Do routings in Python</h3>
+
+<p>I bet that You don’t want to write SQLs. Good news here if you like writing Python! I wrote a <a href="https://github.com/herrkaefer/psycopgr"><code class="language-plaintext highlighter-rouge">psycopgr</code></a> Python module to encapsulate database connection (via <code class="language-plaintext highlighter-rouge">psycopg2</code>) and <code class="language-plaintext highlighter-rouge">pgRouting</code> callings. Here is a <a href="/2016/09/01/psycopgr-tutorial/">tutorial</a>.</p>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2019-05-04
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2016/08/30/pgrouting-notes/&text=pgRouting Notes: http://localhost:4000/2016/08/30/pgrouting-notes/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2016/08/30/pgrouting-notes/&appkey=&title=分享下@herrkaefer 的文章: pgRouting Notes&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2016/08/30/pgrouting-notes/&title=pgRouting Notes" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=pgRouting Notes&body=http://localhost:4000/2016/08/30/pgrouting-notes/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

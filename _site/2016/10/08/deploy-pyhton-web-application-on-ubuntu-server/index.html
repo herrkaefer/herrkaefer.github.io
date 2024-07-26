@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - Deploy Python web application on Ubuntu server</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  October 08, 2016
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Deploy Python web application on Ubuntu server</h1>
+
+<div id="post">
+  <p>Components used for this article:</p>
+
+<ul>
+  <li>VPS: <a href="https://www.linode.com/">Linode</a></li>
+  <li>OS: <strong>Ubuntu 14.04 LTS</strong></li>
+  <li>Web server: <a href="http://nginx.org/">Nginx</a></li>
+  <li>WSGI server: <a href="http://gunicorn.org/">Gunicorn</a></li>
+  <li>Application framework: <a href="http://docs.pylonsproject.org/en/latest/docs/pyramid.html#pyramid-documentation">Pyramid</a></li>
+  <li>Relational database: <a href="https://www.postgresql.org/">PostgreSQL</a></li>
+  <li>NoSQL data store: <a href="http://redis.io/">Redis</a></li>
+  <li>Python version: 3.4</li>
+</ul>
+
+<p>Suppose that we already installed an Ubuntu image on a Linode plan.</p>
+
+<h2 id="update-packages">Update packages</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade
+</code></pre></div></div>
+
+<h2 id="dns-resolution">DNS resolution</h2>
+
+<p>Add a <code class="language-plaintext highlighter-rouge">A record</code> for the domain name of the application.</p>
+
+<h2 id="nginx">Nginx</h2>
+
+<h3 id="install-nginx">Install Nginx</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>nginx
+</code></pre></div></div>
+
+<h3 id="configure-ngnix">Configure Ngnix</h3>
+
+<p>Create a cofiguration file under <code class="language-plaintext highlighter-rouge">/etc/nginx/conf.d/</code> with name <code class="language-plaintext highlighter-rouge">[app_name].conf</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/nginx/conf.d/[app_name].conf
+</code></pre></div></div>
+
+<h4 id="configure-without-https">Configure without https</h4>
+
+<p>Template of <code class="language-plaintext highlighter-rouge">/etc/nginx/conf.d/[app_name].conf</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upstream app_server_wsgiapp {
+    server localhost:8000 fail_timeout=0;
+}
+
+server {
+    listen 80;
+    # make sure to change the next line to your own domain name!
+    server_name appname.example.com;
+    access_log /var/log/nginx/appname.access.log;
+    error_log /var/log/nginx/appname.error.log info;
+    keepalive_timeout 5;
+
+    # nginx serve up static files and never send to the WSGI server
+    location /static {
+        autoindex on;
+        alias /home/username/appname/static;
+    }
+
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            if (!-f $request_filename) {
+                proxy_pass http://app_server_wsgiapp;
+                break;
+            }
+    }
+
+    # this section allows Nginx to reverse proxy for websockets
+    location /socket.io {
+        proxy_pass http://app_server_wsgiapp/socket.io;
+        proxy_redirect off;
+        proxy_buffering off;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+}
+</code></pre></div></div>
+
+<h4 id="configure-with-https">Configure with https</h4>
+
+<p>(to add)</p>
+
+<h4 id="restart-nginx">Restart nginx</h4>
+
+<p>Delete default website file:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> /etc/nginx/sites-enabled/default
+</code></pre></div></div>
+
+<p>Apply new configuration:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>service nginx restart
+</code></pre></div></div>
+
+<h2 id="postgresql">PostgreSQL</h2>
+
+<p>Install PostgreSQL</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>postgresql libpq-dev postgresql-client-common postgresql-client
+</code></pre></div></div>
+
+<p>then create database and new user</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># switch to postgres user</span>
+<span class="nb">sudo </span>su - postgres
+
+<span class="c"># create database</span>
+createdb dbname
+
+<span class="c"># create a non-root database user and set password</span>
+createuser <span class="nt">--superuser</span> username
+psql
+ALTER USER username WITH PASSWORD <span class="s1">'password'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>(For me, it seems that the last line would take effect, but we can change the password later.)</p>
+
+<p>Press <code class="language-plaintext highlighter-rouge">CTRL-D</code> to quit <code class="language-plaintext highlighter-rouge">psql</code>, and <code class="language-plaintext highlighter-rouge">CTRL-D</code> again to quit postgres user.</p>
+
+<p>Now database <code class="language-plaintext highlighter-rouge">dbname</code> is created and user <code class="language-plaintext highlighter-rouge">username</code> is able to access the database.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Connect to database</span>
+psql dbname
+
+<span class="c"># Show tables</span>
+<span class="se">\d</span>t
+</code></pre></div></div>
+
+<p>Change password of current user:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\p</span>assword
+</code></pre></div></div>
+
+<h2 id="redis">Redis</h2>
+
+<p>Install Redis</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>redis-server
+</code></pre></div></div>
+
+<p>Test using <code class="language-plaintext highlighter-rouge">redis-cli</code>.</p>
+
+<h2 id="python-application">Python application</h2>
+
+<h3 id="install-pip-virtualenv">Install pip, virtualenv</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>python3-pip
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>python3.4-venv
+<span class="nb">sudo </span>python3 <span class="nt">-m</span> pip <span class="nb">install </span>virtualenv virtualenvwrapper
+</code></pre></div></div>
+
+<p>Note: <code class="language-plaintext highlighter-rouge">python3.4-venv</code> not <code class="language-plaintext highlighter-rouge">python3-venv</code></p>
+
+<h3 id="make-virtualenv">Make virtualenv</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set an environment variable to where you want your virtual environment</span>
+<span class="nb">export </span><span class="nv">VENV</span><span class="o">=</span>~/env
+<span class="c"># create the virtual environment</span>
+python3 <span class="nt">-m</span> venv <span class="nv">$VENV</span>
+</code></pre></div></div>
+
+<p>Upgrade packages in virtualenv</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$VENV</span>/bin/pip <span class="nb">install</span> <span class="nt">--upgrade</span> pip setuptools
+</code></pre></div></div>
+
+<p>“Why use <code class="language-plaintext highlighter-rouge">$VENV/bin/pip</code> instead of <code class="language-plaintext highlighter-rouge">source bin/activate</code>, then <code class="language-plaintext highlighter-rouge">pip</code>?” From Pyramid docs:</p>
+
+<blockquote>
+  <p>$VENV/bin/pip clearly specifies that pip is run from within the virtual environment and not at the system level.</p>
+
+  <p>activate drops turds into the user’s shell environment, leaving them vulnerable to executing commands in the wrong context. deactivate might not correctly restore previous shell environment variables.</p>
+
+  <p>Although using source bin/activate, then pip, requires fewer key strokes to issue commands once invoked, there are other things to consider. Michael F. Lamb (datagrok) presents a summary in Virtualenv’s bin/activate is Doing It Wrong.</p>
+</blockquote>
+
+<blockquote>
+  <p>Ultimately we prefer to keep things clear and simple, so we use $VENV/bin/pip.</p>
+</blockquote>
+
+<h3 id="pyramid">Pyramid</h3>
+
+<p>Install Pyramid</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># install pyramid</span>
+<span class="nv">$VENV</span>/bin/pip <span class="nb">install </span>pyramid
+<span class="c"># or for a specific released version</span>
+<span class="nv">$VENV</span>/bin/pip <span class="nb">install</span> <span class="s2">"pyramid==1.7.3"</span>
+</code></pre></div></div>
+
+<h3 id="demo-app">Demo app</h3>
+
+<p>We create a demo app using scaffold provided by Pyramid.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$VENV</span>/bin/pcreate <span class="nt">-s</span> starter demo
+<span class="nb">cd </span>demo
+<span class="nv">$VENV</span>/bin/pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
+</code></pre></div></div>
+
+<h2 id="wsgi-server">WSGI server</h2>
+
+<p>Install Gunicorn</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$VENV</span>/bin/pip <span class="nb">install </span>gunicorn
+</code></pre></div></div>
+
+<p>Run the demo app:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/demo
+<span class="nv">$VENV</span>/bin/gunicorn <span class="nt">--paste</span> development.ini <span class="nt">-b</span> :8000
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">8000</code> is the port gunicorn listens from the nginx reverse proxy, which we set in <code class="language-plaintext highlighter-rouge">/etc/nginx/conf.d/demo.conf</code>.</p>
+
+<p>Open a browser and visit the URL and the app should be running.</p>
+
+<h3 id="start-gunicorn-server-with-supervisor">Start gunicorn server with supervisor</h3>
+
+<p>Install supervisor</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>supervisor
+</code></pre></div></div>
+
+<p>Configure supervisor. Create a file <code class="language-plaintext highlighter-rouge">/etc/supervisor/conf.d/[app_name].conf</code>, and add lines: (e.g., for demo app, the file name should be <code class="language-plaintext highlighter-rouge">demo.conf</code>)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[program:demo] 
+environment=DEBUG=False
+command=/home/[username]/venv/bin/gunicorn --paste [path/to/app/]development.ini -b :8000 --chdir [path/to/app]
+directory=/home/[username]/demo 
+user=[username]
+autostart=true 
+autorestart=true
+redirect_stderr=True
+</code></pre></div></div>
+
+<p>Start supervisor service:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>service supervisor start
+</code></pre></div></div>
+
+<p>Visit the URL and the app should be running.</p>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2016-10-08
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/&text=Deploy Python web application on Ubuntu server: http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/&appkey=&title=分享下@herrkaefer 的文章: Deploy Python web application on Ubuntu server&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/&title=Deploy Python web application on Ubuntu server" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=Deploy Python web application on Ubuntu server&body=http://localhost:4000/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

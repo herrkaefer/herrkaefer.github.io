@@ -1,0 +1,42 @@
+# Theme customization - please change from the defaults!
+
+# Color for top bar, links, etc
+highlight_color: '#1C1C1C'
+link_color: '#00896C'
+
+# Profile links on the left sidebar, leave blank to ignore
+social:
+  github: herrkaefer
+  #bitbucket: philipj
+  #hacker_news: herrkaefer
+  #stackexchange: 348619
+  #stackoverflow: 348619
+  twitter: herr_kaefer
+  #facebook: zuck
+  #tumblr: animalygifs
+  #linkedin: philipjagielski
+  #gplus: 110552447039675960964
+  gravatar: e97051c9236cbec41aaa5860ba4891fc
+  #flickr: johndoe
+  instagram: herrkaefer
+  # 500px: herrkaefer
+  weibo: herrkaefer
+
+# "Hi, I'm _______"
+name: herrkaefer
+title: herrkaefer #Magical Mystery Tool
+email: gloolar+blog@gmail.com
+tagline: ""
+
+# Google Analytics key, leave blank to ignore
+google_analytics_key: UA-3042065-2
+
+# Toggle "Postings are my own" disclaimer in footer
+show_disclaimer: false
+
+# Toggle link/icon to view atom feed (/atom.xml) in sidebar
+show_atom_feed: true
+
+# Toggle link/icon to send email in sidebar
+show_email: true
+

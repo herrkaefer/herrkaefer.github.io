@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - Move Jekyll blog to Ubuntu VPS</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  February 20, 2017
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Move Jekyll blog to Ubuntu VPS</h1>
+
+<div id="post">
+  <p>(Tested on: Linode with Ubuntu 16.04 LTS)</p>
+
+<h1 id="install-jekyll-on-ubuntu-vps">Install Jekyll on Ubuntu VPS</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> apt <span class="nt">-y</span> upgrade
+<span class="nb">sudo </span>apt <span class="nb">install </span>ruby ruby-dev ruby-bundler zlib1g-dev build-essential make gcc git jekyll bundler
+</code></pre></div></div>
+
+<h1 id="automated-deployment-with-git">Automated deployment with Git</h1>
+
+<p>On VPS,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> ~/blog.git <span class="c"># the site source</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/www/blog <span class="c"># the built site</span>
+</code></pre></div></div>
+
+<p>Setup git hook to automatically build the site whenever after site source is updated:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/blog.git
+git init <span class="nt">--bare</span>
+<span class="nb">cp </span>hooks/post-update.sample hooks/post-receive
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">--bare</code> means that our folder will have no source files, just the version control.</p>
+</blockquote>
+
+<p>Edit <code class="language-plaintext highlighter-rouge">hooks/post-receive</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="nv">GIT_REPO</span><span class="o">=</span><span class="nv">$HOME</span>/blog.git
+<span class="nv">TMP_GIT_CLONE</span><span class="o">=</span><span class="nv">$HOME</span>/tmp/blog
+<span class="nv">PUBLIC_WWW</span><span class="o">=</span><span class="nv">$HOME</span>/www/blog
+
+git clone <span class="nv">$GIT_REPO</span> <span class="nv">$TMP_GIT_CLONE</span>
+jekyll build <span class="nt">-s</span> <span class="nv">$TMP_GIT_CLONE</span> <span class="nt">-d</span> <span class="nv">$PUBLIC_WWW</span>
+<span class="nb">rm</span> <span class="nt">-Rf</span> <span class="nv">$TMP_GIT_CLONE</span>
+<span class="nb">exit</span>
+</code></pre></div></div>
+
+<h1 id="serve-static-site-with-nginx">Serve static site with Nginx</h1>
+
+<p>Install nginx:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>nginx
+</code></pre></div></div>
+
+<p>Add a configuration:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/nginx/conf.d/blog.conf
+</code></pre></div></div>
+
+<p>with content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+  # listen on http (port 80)
+  # remove the "default_server" if you are running multiple sites off the same VPS
+  listen 80 default_server;
+
+  # the IP address of your VPS
+  server_name herrkaefer.com;
+  # see http://nginx.org/en/docs/http/server_names.html for options
+  # to use your own domain, point a DNS A record at this IP address
+  # and set the server name to (eg.) "blog.example.com"
+
+  # the path you deployed to. this should match whatever was in your
+  # Capistrano deploy file, with "/current" appended to the end
+  # (Capistrano symlinks to this to your current site)
+  root /home/herrkaefer/www/blog;
+  index index.html
+
+  # how long should static files be cached for, see http://nginx.org/en/docs/http/ngx_http_headers_module.html for options.
+  expires 1d;
+}
+</code></pre></div></div>
+
+<p>Then remove default config file and restart Nginx:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo rm /etc/nginx/sites-enabled/default
+sudo systemctl restart nginx
+</code></pre></div></div>
+<p>Remember to allow Nginx port if the firewall is enabled.</p>
+
+<h1 id="local-machine-setup">Local machine setup</h1>
+
+<p>On local machine, in Jekyll repo folder, add remote repository:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">[</span>jekyll_blog_folder]
+</code></pre></div></div>
+
+<p>Show remotes:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>Add remote named <code class="language-plaintext highlighter-rouge">web</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add web username@[host]:~/blog.git
+</code></pre></div></div>
+
+<p>If you need to specify other SSH port, you should do:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add web ssh://username@[host]:[port][absolutePathTo]/blog.git
+</code></pre></div></div>
+
+<p>note that <code class="language-plaintext highlighter-rouge">ssh://</code> can not be omitted.</p>
+
+<h1 id="write-and-publish">Write and publish</h1>
+
+<p>After writing,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit -am "blog updated"
+git push web master
+</code></pre></div></div>
+
+<h1 id="troubleshoot">Troubleshoot</h1>
+
+<h2 id="nginx-403-forbidden">Nginx 403 Forbidden</h2>
+
+<p><a href="https://www.jianshu.com/p/e0dadb871894">nginx 403 Forbidden 排错记录 - 简书</a></p>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2020-01-03
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps/&text=Move Jekyll blog to Ubuntu VPS: http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps/&appkey=&title=分享下@herrkaefer 的文章: Move Jekyll blog to Ubuntu VPS&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps/&title=Move Jekyll blog to Ubuntu VPS" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=Move Jekyll blog to Ubuntu VPS&body=http://localhost:4000/2017/02/20/move-jekyll-blog-to-ubuntu-vps/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

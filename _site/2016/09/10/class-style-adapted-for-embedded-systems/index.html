@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - CLASS Style Adapted for Embedded Systems</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  September 10, 2016
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">CLASS Style Adapted for Embedded Systems</h1>
+
+<div id="post">
+  <h2 id="class-c-coding-style">CLASS C Coding style</h2>
+
+<p><a href="http://rfc.zeromq.org/spec:21/CLASS/">CLASS</a> is “C Language Style for Scalability” developed by Pieter Hintjens:</p>
+
+<blockquote>
+  <p>The C Language Style for Scalability (CLASS) defines a consistent style and organization for scalable C library and application code built on modern C compilers and operating systems. CLASS aims to collect industry best practice into one reusable standard.</p>
+</blockquote>
+
+<p>CLASS is all about writing APIs. Types and functions are grouped by tasks. I have used this style to write C codes after reading the unfinished book <a href="https://www.gitbook.com/book/hintjens/scalable-c/details">“Scalable C”</a>, and it makes writing C code a great fun.</p>
+
+<h2 id="problem">Problem</h2>
+
+<p>Recently I am developing some algorithms in C targeted at embedded system where static memory is used instead of dynamic heap memory. So I tried to adapt the CLASS style to the embedded version.</p>
+
+<p>To avoid use of heap memory, we need to re-consider the following issues:</p>
+
+<ul>
+  <li>How to create object with adjustable parameters?</li>
+  <li>How to initialize object with parameters?</li>
+  <li>How to return memory block in APIs?</li>
+</ul>
+
+<p>Below is my initial solution.</p>
+
+<h2 id="class-for-embedded-system-classes">CLASS for Embedded System (CLASSES)</h2>
+
+<p>I wrote a skeleton project for demonstration purpose. <a href="https://github.com/herrkaefer/embedded-c-boilerplate">embedded-c-boilerplate <i class="fa fa-github"></i></a>. The following of this post is basically explanations of the codes. Let’s take a <code class="language-plaintext highlighter-rouge">buffer</code> class for example.</p>
+
+<h3 id="parameter-configuration-with-a-separate-header-file">Parameter configuration with a separate header file</h3>
+
+<p>Instead of creating object dynamically with input parameters in <code class="language-plaintext highlighter-rouge">new()</code>, we turn to use macros to define parameters in advance.</p>
+
+<p>For each class, use a separate <code class="language-plaintext highlighter-rouge">myclass.ini</code> file to allow the class user to define parameters to configure the object. These parameters are essential to object creation and initialization.</p>
+
+<p>For example, in <code class="language-plaintext highlighter-rouge">buffer.ini</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define BUFFER_SIZE 128
+#define BUFFER_PARAM_A 1
+#define BUFFER_PARAM_B 9.4
+</span></code></pre></div></div>
+
+<p>You can comment any line to use the default value. Default values are defined in .h file (explained bellow).</p>
+
+<p>Then include this file before the class header file.</p>
+
+<p>This approach is invasive because if you change parameters recompiling is necessary. However, it is still helpful for separating configuration from code. You could change parameters without going deeply into the class implementations.</p>
+
+<h3 id="parameter-regularization">Parameter regularization</h3>
+
+<p>For each parameter essential to object creation and initialization:</p>
+
+<ol>
+  <li>Define <strong>default parameter</strong> which can be overrided by user defined value in cfg file (the .ini file).</li>
+  <li>Typecast it to <strong>inner representation</strong> prefixed by a underscore.</li>
+  <li>Perform <strong>static assertion</strong> to verify that the value is within correct range.</li>
+</ol>
+
+<p>These are done in the class header. For the buffer example, in <code class="language-plaintext highlighter-rouge">buffer.h</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"buffer.ini"</span><span class="cp">
+</span>
+<span class="cp">#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 32
+#endif
+#define _BUFFER_SIZE (size_t) BUFFER_SIZE
+</span><span class="n">ct_assert</span> <span class="p">(</span><span class="n">_BUFFER_SIZE</span> <span class="o">&lt;=</span> <span class="mi">1024</span><span class="p">);</span>
+
+<span class="cp">#ifndef BUFFER_PARAM_A
+#define BUFFER_PARAM_A 2
+#endif
+#define _BUFFER_PARAM_A (int) BUFFER_PARAM_A
+</span><span class="n">ct_assert</span> <span class="p">(</span><span class="n">_BUFFER_PARAM_A</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="cp">#ifndef BUFFER_PARAM_B
+#define BUFFER_PARAM_B 7.0
+#endif
+#define _BUFFER_PARAM_B (double) BUFFER_PARAM_B
+</span><span class="n">ct_assert</span> <span class="p">(</span><span class="n">_BUFFER_PARAM_B</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ct_assert</code> macro does compile-time assertion of to verify that the parameter is within the correct range, which is defined as below:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define ct_assert3(COND,MSG) typedef char static_assertion_failed_at_line_##MSG[(!!(COND))*2-1]
+#define ct_assert2(COND,MSG) ct_assert3(COND,MSG)
+#define ct_assert(COND) ct_assert2(COND,__LINE__)
+</span></code></pre></div></div>
+
+<p>From this step on, we will use parameters with inner representations (for structure defination and <code class="language-plaintext highlighter-rouge">init()</code>, see bellow), e.g.<code class="language-plaintext highlighter-rouge">_BUFFER_SIZE</code> instead of <code class="language-plaintext highlighter-rouge">BUFFER_SIZE</code>.</p>
+
+<h3 id="data-structure-defination">Data structure defination</h3>
+
+<p>Structure defination has to be public in the header file, as for embedded application, object is instantiated statically, and the compiler needs to know its size.</p>
+
+<p>This is the <code class="language-plaintext highlighter-rouge">buffer_t</code> structure:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">data</span><span class="p">[</span><span class="n">_BUFFER_SIZE</span><span class="p">];</span>
+    <span class="kt">size_t</span> <span class="n">size</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">param_a</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">param_b</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">buffer_t</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">buffer_t</code> is a new defined struct type. To instantiate it, or define a variable:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buffer_t</span> <span class="n">buffer</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="object-initialization">Object initialization</h3>
+
+<p>Constructor <code class="language-plaintext highlighter-rouge">new()</code> and destructor <code class="language-plaintext highlighter-rouge">free()</code> or <code class="language-plaintext highlighter-rouge">destroy()</code> are no longer needed. Instead, a <code class="language-plaintext highlighter-rouge">init()</code> API is added for initializing object, e.g.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Initialize buffer object</span>
+<span class="kt">void</span> <span class="nf">buffer_init</span> <span class="p">(</span><span class="n">buffer_t</span> <span class="o">*</span><span class="n">self</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">init()</code>, we</p>
+
+<ul>
+  <li>Use parameters with <strong>inner representation</strong> (e.g. <code class="language-plaintext highlighter-rouge">_BUFFER_SIZE</code>) to initialize corresponding properties.</li>
+  <li>Assign parameter to variable if you need to access it later. <strong>The idea is: using of parameter macros should stop after <code class="language-plaintext highlighter-rouge">init()</code>. In other APIs, we do not see the macros any more.</strong> Instead, we use the parameter variables. Of course, this approach will cost a little more memory than using macros directly.</li>
+  <li>For other properties, try to initialize them to default values (0/false/NULL)</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">init()</code> should be called once before you use the object.</p>
+
+<p>For example,</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">buffer_init</span> <span class="p">(</span><span class="n">buffer_t</span> <span class="o">*</span><span class="n">self</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">assert</span> <span class="p">(</span><span class="n">self</span><span class="p">);</span>
+    <span class="n">memset</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">_BUFFER_SIZE</span> <span class="o">*</span> <span class="k">sizeof</span> <span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+    <span class="n">self</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">_BUFFER_SIZE</span><span class="p">;</span>
+    <span class="n">self</span><span class="o">-&gt;</span><span class="n">param_a</span> <span class="o">=</span> <span class="n">_BUFFER_PARAM_A</span><span class="p">;</span>
+    <span class="n">self</span><span class="o">-&gt;</span><span class="n">param_b</span> <span class="o">=</span> <span class="n">_BUFFER_PARAM_B</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="apis-design-guide">APIs design guide</h2>
+
+<h3 id="naming-conventions">Naming conventions</h3>
+
+<p>This is the same as in CLASS style. Every API should accept the pointer of the object as the first parameter, followed by other parameters:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myclass_mymethod</span> <span class="p">(</span><span class="n">myobject</span><span class="p">,</span> <span class="p">...)</span>
+</code></pre></div></div>
+
+<h3 id="initialization">Initialization</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">myclass_init</span> <span class="p">(</span><span class="n">myclass_t</span> <span class="o">*</span><span class="n">self</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Constructor (<code class="language-plaintext highlighter-rouge">new()</code>, or <code class="language-plaintext highlighter-rouge">create()</code>) and destructor (<code class="language-plaintext highlighter-rouge">free()</code> or <code class="language-plaintext highlighter-rouge">destroy()</code>) are no longer needed. Instead we add a <code class="language-plaintext highlighter-rouge">init()</code> to do initilization works, which has been explained above.</p>
+
+<p>Initialize the object once before you use it:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myclass</span> <span class="n">myobject</span><span class="p">;</span>
+<span class="n">myclass_init</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">myobject</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="getter-and-setter">Getter and setter</h3>
+
+<p>Though you can manipulate properties directly as the structure is public, doing these via getter and setter APIs are recommended. You should <strong>pretend</strong> that the structure implementation is hidden, and never manipulate properties directly.</p>
+
+<p>It is not necessary to write getter and setter for every property. For const properties, do not provide a setter.</p>
+
+<h3 id="other-apis">Other APIs</h3>
+
+<p>APIs for real works, e.g.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">buffer_push</span> <span class="p">(</span><span class="n">buffer_t</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span> <span class="kt">double</span> <span class="n">value</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="no-heap-memory-allocation">No heap memory allocation</h3>
+
+<ul>
+  <li>Avoid using dynamic memory allocation, e.g. <code class="language-plaintext highlighter-rouge">malloc()</code> or <code class="language-plaintext highlighter-rouge">alloc()</code></li>
+  <li>To return memory block, use <strong>inout parameter</strong> rather than memory block dynamically allocated inside the function.</li>
+</ul>
+
+<p>For example, to calculate the squared root of every element in a buffer, we write a function as:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">buffer_sqrt</span> <span class="p">(</span><span class="n">buffer_t</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">output</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">assert</span> <span class="p">(</span><span class="n">self</span><span class="p">);</span>
+    <span class="n">assert</span> <span class="p">(</span><span class="n">output</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">self</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">idx</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sqrt</span> <span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It is better to indicate the inout parameter by name such as <strong>“output”</strong> in the API declaration, and note it in the comment.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Squared root of buffer data.</span>
+<span class="c1">// Return result in param output.</span>
+<span class="kt">void</span> <span class="nf">buffer_sqrt</span> <span class="p">(</span><span class="n">buffer_t</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">output</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="problems-and-limitations">Problems and limitations</h2>
+
+<h3 id="same-class-defination-multiple-configuraton">Same class defination, multiple configuraton</h3>
+
+<p>For example, you need two buffers with different length in a program. It seems not easy to realize if the configuration is related to memory allocation, which is done during compiling stage. Buffers with differnt length should actually be viewed as instances of different classes.</p>
+
+<h3 id="building-and-using-libraries">Building and using libraries</h3>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2018-05-05
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems/&text=CLASS Style Adapted for Embedded Systems: http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems/&appkey=&title=分享下@herrkaefer 的文章: CLASS Style Adapted for Embedded Systems&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems/&title=CLASS Style Adapted for Embedded Systems" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=CLASS Style Adapted for Embedded Systems&body=http://localhost:4000/2016/09/10/class-style-adapted-for-embedded-systems/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

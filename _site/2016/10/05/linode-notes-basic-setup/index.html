@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - Linode Notes - Basic Setup</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2016/10/05/linode-notes-basic-setup/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  October 05, 2016
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Linode Notes - Basic Setup</h1>
+
+<div id="post">
+  <h2 id="buy-a-linode-plan">Buy a Linode plan</h2>
+
+<p>For location, Tokyo is not available now, and I choose Newark based on <a href="https://www.linode.com/speedtest">speed test</a> (rather than Fremont).</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>Ref: <a href="https://www.linode.com/docs/getting-started">Getting Started with Linode</a></p>
+
+<h3 id="deploy-an-image">Deploy an image</h3>
+
+<ul>
+  <li>At <a href="https://manager.linode.com/">Linode manager</a>, enter the dashboard of linode plan.</li>
+  <li>Select “Deploy an Image”. Choose Ubuntu Long Term Support (LTS) release, e.g. Ubuntu 16.04 LTS.</li>
+  <li>Set a password for root user (at least 6 characters long).</li>
+  <li>Click “Deploy” button.</li>
+  <li>When job finished, click “Boot” to power on.</li>
+</ul>
+
+<h3 id="connect-to-the-server">Connect to the server</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh root@[IP]
+</code></pre></div></div>
+<p>The IP address can be find in the “Remote Access” panel. Enter the password to log in.</p>
+
+<h3 id="basic-settings">Basic settings</h3>
+
+<p>Upgrade packages</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade
+</code></pre></div></div>
+
+<p>Set hostname</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"hostname"</span> <span class="o">&gt;</span> /etc/hostname
+
+<span class="c"># Set hostname from file</span>
+<span class="nb">hostname</span> <span class="nt">-F</span> /etc/hostname
+
+<span class="c"># Verify hostname</span>
+<span class="nb">hostname</span>
+</code></pre></div></div>
+
+<p>Edit hosts file</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano /etc/hosts
+</code></pre></div></div>
+
+<p>and add a line:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[IP address] [Fully Qualified Domain Name (FQDN)] hostname
+</code></pre></div></div>
+
+<blockquote>
+  <p>The value you assign as your system’s FQDN should have an “A” record in DNS pointing to your Linode’s IPv4 address.</p>
+</blockquote>
+
+<p>(Save and close file after editing with nano: <code class="language-plaintext highlighter-rouge">CTRL-X</code>, then <code class="language-plaintext highlighter-rouge">Y</code>, then <code class="language-plaintext highlighter-rouge">ENTER</code>.)</p>
+
+<p>Set timezone:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dpkg-reconfigure tzdata
+
+<span class="c"># Check time</span>
+<span class="nb">date</span>
+</code></pre></div></div>
+
+<h2 id="securing-your-server">Securing Your Server</h2>
+
+<p>Ref: <a href="https://www.linode.com/docs/security/securing-your-server#use-fail2ban-for-ssh-login-protection">Securing Your Server</a></p>
+
+<h3 id="add-a-limited-user-account">Add a Limited User Account</h3>
+
+<p>Create user:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adduser example_user
+</code></pre></div></div>
+
+<p>Add user to sudo group:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adduser example_user <span class="nb">sudo</span>
+</code></pre></div></div>
+
+<p>Switch to example_user:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">exit
+</span>ssh example_user@[IP]
+</code></pre></div></div>
+
+<h3 id="authentication-by-ssh-key-pair">Authentication by SSH key pair</h3>
+
+<p>On local machine,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen <span class="nt">-b</span> 4096
+</code></pre></div></div>
+<p>Press Enter three times to use default filenames and empty passphrase.</p>
+
+<p>Two files <code class="language-plaintext highlighter-rouge">id_rsa</code> and <code class="language-plaintext highlighter-rouge">id_rsa.pub</code> are generated in <code class="language-plaintext highlighter-rouge">/home/your_username/.ssh</code>.</p>
+
+<p>On Linode,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/.ssh <span class="o">&amp;&amp;</span> <span class="nb">sudo chmod</span> <span class="nt">-R</span> 700 ~/.ssh/
+</code></pre></div></div>
+
+<p>Upload public key to server:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp ~/.ssh/id_rsa.pub example_user@[IP]:~/.ssh/authorized_keys
+</code></pre></div></div>
+
+<p>Exit and log into Linode again. No password is needed now.</p>
+
+<h3 id="adjust-ssh-settings">Adjust SSH settings</h3>
+
+<p>Edit <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Disable SSH password authentication
+PasswordAuthentication no
+
+# Disable PAM authentication
+UsePAM no
+
+# Disallow root logins over SSH
+PermitRootLogin no
+</code></pre></div></div>
+
+<p>Apply new ssh configurations:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart sshd
+</code></pre></div></div>
+
+<h3 id="use-fail2ban-for-ssh-login-protection">Use Fail2Ban for SSH Login Protection</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>fail2ban
+</code></pre></div></div>
+
+<h3 id="remove-unused-network-facing-services">Remove Unused Network-Facing Services</h3>
+
+<p>To see your Linode’s running network services:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo netstat -tulpn
+</code></pre></div></div>
+
+<p>And remove unused services accordingly.</p>
+
+<h3 id="enable-the-firewall">Enable the Firewall</h3>
+
+<p>Refs:</p>
+
+<ul>
+  <li><a href="https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw">https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands">UFW Essentials: Common Firewall Rules and Commands</a></li>
+</ul>
+
+<h2 id="tools">Tools</h2>
+
+<h3 id="zsh">zsh</h3>
+
+<p>Ref: <a href="https://gist.github.com/tsabat/1498393">Getting oh-my-zsh to work in Ubuntu</a></p>
+
+<p>Prereq:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>zsh
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>git-core
+</code></pre></div></div>
+
+<p>Getting zsh to work in ubuntu is weird, since sh does not understand the <code class="language-plaintext highlighter-rouge">source</code> command. So, you do this to install zsh</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh <span class="nt">-O</span> - | zsh
+</code></pre></div></div>
+
+<p>and then you change your shell to zsh</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chsh <span class="nt">-s</span> <span class="sb">`</span>which zsh<span class="sb">`</span>
+</code></pre></div></div>
+
+<p>and then reboot</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>shutdown <span class="nt">-r</span> 0
+</code></pre></div></div>
+
+<p>Because the default theme does not show hostname, we may want to change a theme (<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes">zsh themes</a>).</p>
+
+<p>Edit <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ZSH_THEME="alanpeabody"
+</code></pre></div></div>
+
+<h3 id="cyberduck-for-file-transfer">Cyberduck for File transfer</h3>
+
+<p>Use <a href="https://cyberduck.io/">Cyberduck</a>: <a href="https://www.linode.com/docs/tools-reference/file-transfer/transfer-files-with-cyberduck-on-mac-os-x">Transfer Files with Cyberduck on Mac OS X</a></p>
+
+<h3 id="install-desktop">Install desktop</h3>
+
+<p>Ref: <a href="https://www.linode.com/docs/applications/remote-desktop/install-vnc-on-ubuntu-16-04">Install VNC on Ubuntu 16.04</a></p>
+
+<p>Install full desktop:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+</code></pre></div></div>
+
+<p>Or, install desktop environments without full packages (no tools like office and browser, small size, however there exists coding problem for Chinese font):</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">--no-install-recommends</span> ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+</code></pre></div></div>
+
+<p>During the install process, you will be asked whether or not to change a system file to the new version. Type <strong>y</strong> then <strong>enter</strong> to use the updated version.</p>
+
+<p>Install VNC server:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>vnc4server
+</code></pre></div></div>
+
+<p>Exit and reconnect with command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-L</span> 5901:127.0.0.1:5901 user@[IP]
+</code></pre></div></div>
+
+<p>start vnc server (for first time, set a password after prompt):</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vncserver :1
+</code></pre></div></div>
+
+<p>Then connect with <a href="https://www.realvnc.com/download/viewer/">VNC viewer</a>.</p>
+
+<p>Ignore the “unencrypted connection” message. And a gray screen showed.</p>
+
+<p>Close VNC server:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vncserver <span class="nt">-kill</span> :1
+</code></pre></div></div>
+
+<p>And edit <code class="language-plaintext highlighter-rouge">~/.vnc/xstartup</code> file to add a few lines to the end:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gnome-panel &amp;
+gnome-settings-daemon &amp;
+metacity &amp;
+nautilus &amp;
+</code></pre></div></div>
+
+<p>Start VNC server again and connect from client. Desktop should show.</p>
+
+<p>In case that VNC viewer shows connection error: “Too many Security Failures”, restart the server:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vncserver <span class="nt">-kill</span> :1
+vncserver :1
+</code></pre></div></div>
+
+<h4 id="install-chrome">Install Chrome</h4>
+
+<p><a href="http://www.earngurus.com/install-chrome-browser-in-linux-or-ubuntu-vps/">How To Install Chrome Browser In Linux Or Ubuntu VPS</a></p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="perl-locale-warning">Perl locale warning</h3>
+
+<p>like this:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+    LANGUAGE <span class="o">=</span> <span class="o">(</span><span class="nb">unset</span><span class="o">)</span>,
+    LC_ALL <span class="o">=</span> <span class="o">(</span><span class="nb">unset</span><span class="o">)</span>,
+    LANG <span class="o">=</span> <span class="s2">"en_US.UTF-8"</span>
+are supported and installed on your system.
+perl: warning: Falling back to the standard locale <span class="o">(</span><span class="s2">"C"</span><span class="o">)</span><span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Solution: comment out line from <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AcceptEnv LANG LC_*
+</code></pre></div></div>
+
+<p>Ref: <a href="http://stackoverflow.com/questions/2499794/how-can-i-fix-a-locale-warning-from-perl">link</a></p>
+
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2016-12-12
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2016/10/05/linode-notes-basic-setup/&text=Linode Notes - Basic Setup: http://localhost:4000/2016/10/05/linode-notes-basic-setup/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2016/10/05/linode-notes-basic-setup/&appkey=&title=分享下@herrkaefer 的文章: Linode Notes - Basic Setup&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2016/10/05/linode-notes-basic-setup/&title=Linode Notes - Basic Setup" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=Linode Notes - Basic Setup&body=http://localhost:4000/2016/10/05/linode-notes-basic-setup/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

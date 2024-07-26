@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - psycopgr Tutorial</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2016/09/01/psycopgr-tutorial/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  September 01, 2016
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">psycopgr Tutorial</h1>
+
+<div id="post">
+  <h2 id="what-is-psycopgr">What is psycopgr</h2>
+
+<p>psycopgr <a href="https://github.com/herrkaefer/psycopgr"><i class="fa fa-github"></i></a> is a Python wrapper of <a href="http://pgrouting.org/">pgRouting</a> written by me.</p>
+
+<p>As said in <a href="http://workshop.pgrouting.org/2.1.0-dev/en/chapters/wrapper.html">pgRouting docs</a>:</p>
+
+<blockquote>
+
+  <p>Just considering the different ways that the cost can be calculated, makes it almost impossible to create a general wrapper, that can work on all applications.</p>
+</blockquote>
+
+<p>Indeed, in many applicatons you may need to modify the database tables and fill some computed values to fit your specific purpose, which is often done in a preprocessing stage by SQL, before real routing starts working. It is not appropriate to be wrapped.</p>
+
+<p>However, after preprocessing things such as database creation, map data import, tables re-calculation and update, you are ready to use <code class="language-plaintext highlighter-rouge">psycopgr</code> to do another simple thing: <strong>computing optimal routes from nodes to nodes on real map, in Python.</strong></p>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">psycopgr</code> is never a general purpose wrapper of pgRouting. I am a novice in GIS and what I want from this tool is just routes (with lowest costs) from places to places without writing a single line of SQL.</p>
+
+<p>For preprocessing stage, I have a post <a href="/2016/08/30/pgrouting-notes/">“pgRouting notes”</a> for my own reference. Before enjoyable Python coding, you have to prepare a few stuffs.</p>
+
+<h2 id="tutorial">Tutorial</h2>
+
+<h3 id="requirements">Requirements</h3>
+
+<ol>
+  <li>
+    <p>Prepare a PostgreSQL database, install PostGIS and pgRouting extensions, and import map data to database. <a href="/2016/08/30/pgrouting-notes/">“pgRouting notes”</a> is a practical guide.</p>
+  </li>
+  <li>
+    <p>Update database tables according to your specific requirement.</p>
+  </li>
+</ol>
+
+<h3 id="install-psycopgr">Install psycopgr</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>psycopgr
+</code></pre></div></div>
+<p>(Yes, it is on <a href="https://pypi.org/project/psycopgr/">PyPI</a> now.)</p>
+
+<p>Or,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipenv <span class="nb">install </span>psycopgr
+</code></pre></div></div>
+
+<p>As you may guessed from the name, <code class="language-plaintext highlighter-rouge">psycopgr</code> uses <code class="language-plaintext highlighter-rouge">psycopg2</code> as PostgreSQL driver. The above command will install it automatically.</p>
+
+<h3 id="steps">Steps</h3>
+
+<p>First,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">psycopgr</span> <span class="kn">import</span> <span class="n">PgrNode</span><span class="p">,</span> <span class="n">PGRouting</span>
+</code></pre></div></div>
+
+<p>Create an PGRouting instance with database connection:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pgr</span> <span class="o">=</span> <span class="n">PGRouting</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s">'mydb'</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">'user'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Adjust meta datas of tables including the edge table properies if they are different from the default (only the different properties needs to be set), e.g.:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pgr</span><span class="p">.</span><span class="n">set_meta_data</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="s">'cost_s'</span><span class="p">,</span> <span class="n">reverse_cost</span><span class="o">=</span><span class="s">'reverse_cost_s'</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="n">true</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This is the default meta datas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">'table'</span><span class="p">:</span> <span class="s">'ways'</span><span class="p">,</span>
+    <span class="s">'id'</span><span class="p">:</span> <span class="s">'gid'</span><span class="p">,</span>
+    <span class="s">'source'</span><span class="p">:</span> <span class="s">'source'</span><span class="p">,</span>
+    <span class="s">'target'</span><span class="p">:</span> <span class="s">'target'</span><span class="p">,</span>
+    <span class="s">'cost'</span><span class="p">:</span> <span class="s">'cost_s'</span><span class="p">,</span> <span class="c1"># driving time in second
+</span>    <span class="s">'reverse_cost'</span><span class="p">:</span> <span class="s">'reverse_cost_s'</span><span class="p">,</span> <span class="c1"># reverse driving time in second
+</span>    <span class="s">'x1'</span><span class="p">:</span> <span class="s">'x1'</span><span class="p">,</span>
+    <span class="s">'y1'</span><span class="p">:</span> <span class="s">'y1'</span><span class="p">,</span>
+    <span class="s">'x2'</span><span class="p">:</span> <span class="s">'x2'</span><span class="p">,</span>
+    <span class="s">'y2'</span><span class="p">:</span> <span class="s">'y2'</span><span class="p">,</span>
+    <span class="s">'geometry'</span><span class="p">:</span> <span class="s">'the_geom'</span><span class="p">,</span>
+    <span class="s">'has_reverse_cost'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="s">'directed'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="s">'srid'</span><span class="p">:</span> <span class="mi">4326</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Prepare nodes. nodes are represented by <code class="language-plaintext highlighter-rouge">PgrNode</code> namedtuple with geographic coordinates rather than vertex id (vid) in the tables. <code class="language-plaintext highlighter-rouge">PgrNodes</code> is defined as:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PgrNode</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">'PgrNode'</span><span class="p">,</span> <span class="p">[</span><span class="s">'id'</span><span class="p">,</span> <span class="s">'lon'</span><span class="p">,</span> <span class="s">'lat'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>in which <code class="language-plaintext highlighter-rouge">id</code> could be <code class="language-plaintext highlighter-rouge">None</code> or self-defined value, and <code class="language-plaintext highlighter-rouge">lon</code> and <code class="language-plaintext highlighter-rouge">lat</code> are double precision values. Of course nodes could be input from various interfaces such as database or another program.</p>
+
+<p>For example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">PgrNode</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mf">116.30150</span><span class="p">,</span> <span class="mf">40.05500</span><span class="p">),</span>
+         <span class="n">PgrNode</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mf">116.36577</span><span class="p">,</span> <span class="mf">40.00253</span><span class="p">),</span>
+         <span class="n">PgrNode</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mf">116.30560</span><span class="p">,</span> <span class="mf">39.95458</span><span class="p">),</span>
+         <span class="n">PgrNode</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mf">116.46806</span><span class="p">,</span> <span class="mf">39.99857</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>Now we can do routings:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># many-to-many
+</span><span class="n">routings</span> <span class="o">=</span> <span class="n">pgr</span><span class="p">.</span><span class="n">get_routes</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">end_speed</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">pgx_file</span><span class="o">=</span><span class="s">'r.pgx'</span><span class="p">)</span>
+<span class="c1"># one-to-one
+</span><span class="n">routings</span> <span class="o">=</span> <span class="n">pgr</span><span class="p">.</span><span class="n">get_routes</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># one-to-many
+</span><span class="n">routings</span> <span class="o">=</span> <span class="n">pgr</span><span class="p">.</span><span class="n">get_routes</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nodes</span><span class="p">)</span>
+<span class="c1"># many-to-one
+</span><span class="n">routings</span> <span class="o">=</span> <span class="n">pgr</span><span class="p">.</span><span class="n">get_routes</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">node</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">end_speed</code>: speed from node to nearest vertices on ways in unit km/h.</li>
+  <li><code class="language-plaintext highlighter-rouge">gpx_file</code>: set it to output paths to a gpx file.</li>
+</ul>
+
+<p>The returned is a dict of dict: <code class="language-plaintext highlighter-rouge">{(start_node, end_node): {'path': [PgrNode], 'cost': cost}</code></p>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">cost</code> is traveling time along the path in unit second. It depends on the means of columns of the edge table that you set as <code class="language-plaintext highlighter-rouge">cost</code> and <code class="language-plaintext highlighter-rouge">reverse_cost</code>. You can assign the relations by <code class="language-plaintext highlighter-rouge">set_meta_data</code> function.</p>
+
+<p>We can also get only costs without detailed paths returned:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costs</span> <span class="o">=</span> <span class="n">pgr</span><span class="p">.</span><span class="n">get_costs</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The returned is also a dict: <code class="language-plaintext highlighter-rouge">{(start_node, end_node): cost}</code></p>
+
+<h2 id="low-level-wrapper-of-pgrouting-functions">Low-level wrapper of pgRouting functions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">psycopgr function</th>
+      <th style="text-align: left">pgRouting function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">dijkstra</td>
+      <td style="text-align: left">pgr_dijkstra</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dijkstra_cost</td>
+      <td style="text-align: left">pgr_dijkstraCost</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">astar</td>
+      <td style="text-align: left">pgr_astar</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are direct wrappings of pgRouting functions. For example, <code class="language-plaintext highlighter-rouge">dijkstra</code> takes vertex ids as input. This list may be extended in the future.</p>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2019-05-04
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2016/09/01/psycopgr-tutorial/&text=psycopgr Tutorial: http://localhost:4000/2016/09/01/psycopgr-tutorial/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2016/09/01/psycopgr-tutorial/&appkey=&title=分享下@herrkaefer 的文章: psycopgr Tutorial&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2016/09/01/psycopgr-tutorial/&title=psycopgr Tutorial" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=psycopgr Tutorial&body=http://localhost:4000/2016/09/01/psycopgr-tutorial/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

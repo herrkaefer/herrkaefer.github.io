@@ -1,0 +1,105 @@
+[
+
+{"date": "Sun, 19 Jan 2020 00:00:00 -0600",
+"categories": ["Workflow"],
+"tags": ["macOS,","Finder,","workflow,","SublimeText"],
+"title": "Open folder or file with Sublime Text from Finder toolbar",
+"url": "/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/"},
+
+{"date": "Wed, 24 Oct 2018 00:00:00 -0500",
+"categories": ["Python"],
+"tags": [],
+"title": "Python dev workflow on macOS",
+"url": "/2018/10/24/python-dev-workflow-on-macos/"},
+
+{"date": "Wed, 14 Mar 2018 00:00:00 -0500",
+"categories": ["Workflow"],
+"tags": ["AppleScript,","Finder,","macOS"],
+"title": "Create new text file from Finder toolbar",
+"url": "/2018/03/14/create-new-text-file-from-finder-toolbar/"},
+
+{"date": "Wed, 15 Nov 2017 00:00:00 -0600",
+"categories": ["Kid"],
+"tags": ["card,","game,","kid,","Uno"],
+"title": "Uno reinvented for 3-year-old kids",
+"url": "/2017/11/15/uno-reinvented-for-3-year-old-kids/"},
+
+{"date": "Sun, 12 Nov 2017 00:00:00 -0600",
+"categories": ["Kid"],
+"tags": ["game,","card,","kid,","Uno"],
+"title": "Uno变身儿童数字游戏",
+"url": "/2017/11/12/uno%E5%8F%98%E8%BA%AB%E5%84%BF%E7%AB%A5%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/"},
+
+{"date": "Mon, 06 Nov 2017 00:00:00 -0600",
+"categories": ["Toy Projects"],
+"tags": ["twitter,","weibo,","robot,","blog"],
+"title": "自动转发Twitter到微博",
+"url": "/2017/11/06/%E8%87%AA%E5%8A%A8%E8%BD%AC%E5%8F%91twitter%E5%88%B0%E5%BE%AE%E5%8D%9A/"},
+
+{"date": "Mon, 12 Jun 2017 00:00:00 -0500",
+"categories": ["iOS & watchOS"],
+"tags": [],
+"title": "Handle annoying operations of objects in Realm DB",
+"url": "/2017/06/12/handle-annoying-operations-of-objects-in-realm-db/"},
+
+{"date": "Mon, 20 Feb 2017 00:00:00 -0600",
+"categories": ["Workflow"],
+"tags": ["blog,","jekyll,","vps,","ubuntu"],
+"title": "Move Jekyll blog to Ubuntu VPS",
+"url": "/2017/02/20/move-jekyll-blog-to-ubuntu-vps/"},
+
+{"date": "Wed, 09 Nov 2016 00:00:00 -0600",
+"categories": ["Mole"],
+"tags": ["blog"],
+"title": "Introducing Mole",
+"url": "/2016/11/09/introducing-mole/"},
+
+{"date": "Mon, 17 Oct 2016 00:00:00 -0500",
+"categories": ["workflow"],
+"tags": [],
+"title": "Note taking without note taking app",
+"url": "/2016/10/17/note-taking-without-note-taking-app/"},
+
+{"date": "Sat, 08 Oct 2016 00:00:00 -0500",
+"categories": [],
+"tags": [],
+"title": "Deploy Python web application on Ubuntu server",
+"url": "/2016/10/08/deploy-pyhton-web-application-on-ubuntu-server/"},
+
+{"date": "Thu, 06 Oct 2016 00:00:00 -0500",
+"categories": ["Webapp"],
+"tags": ["blog,","vpn,","shadowsocks,","server,","GFW,","vps"],
+"title": "Setup Shadowsocks / VPN on Ubuntu Server",
+"url": "/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/"},
+
+{"date": "Wed, 05 Oct 2016 00:00:00 -0500",
+"categories": ["Webapp"],
+"tags": ["vps,","linode,","ubuntu"],
+"title": "Linode Notes - Basic Setup",
+"url": "/2016/10/05/linode-notes-basic-setup/"},
+
+{"date": "Sat, 10 Sep 2016 00:00:00 -0500",
+"categories": ["C"],
+"tags": ["embedded,","C,","blog"],
+"title": "CLASS Style Adapted for Embedded Systems",
+"url": "/2016/09/10/class-style-adapted-for-embedded-systems/"},
+
+{"date": "Thu, 01 Sep 2016 00:00:00 -0500",
+"categories": ["GIS"],
+"tags": ["GIS,","pgRouting,","PostGIS,","blog"],
+"title": "psycopgr Tutorial",
+"url": "/2016/09/01/psycopgr-tutorial/"},
+
+{"date": "Tue, 30 Aug 2016 00:00:00 -0500",
+"categories": ["GIS"],
+"tags": ["pgRouting,","PostGIS,","blog"],
+"title": "pgRouting Notes",
+"url": "/2016/08/30/pgrouting-notes/"},
+
+{"date": "Mon, 15 Aug 2016 00:00:00 -0500",
+"categories": [],
+"tags": [],
+"title": "PostgreSQL Notes",
+"url": "/2016/08/15/postgresql-notes/"},
+
+false]

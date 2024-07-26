@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - Setup Shadowsocks / VPN on Ubuntu Server</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  October 06, 2016
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Setup Shadowsocks / VPN on Ubuntu Server</h1>
+
+<div id="post">
+  <p><img src="http://localhost:4000/assets/images/giraffe.jpg" alt="image" /></p>
+
+<p>(Environment: Ubuntu 16.04 LTS installed on VPS such as Linode)</p>
+
+<h2 id="install-and-run-shadowsocks-on-server">Install and run Shadowsocks on server</h2>
+
+<p>I put the following process into a shell script. Check this <strong>“one-click” method</strong>: <a href="https://github.com/herrkaefer/giraffe">giraffe</a></p>
+
+<h3 id="install-shadowsocks">Install Shadowsocks</h3>
+
+<p>Update packages:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade
+</code></pre></div></div>
+
+<p>Install pip and m2crypto:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>python-pip
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>python-m2crypto
+</code></pre></div></div>
+
+<p>Install shadowsocks:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>setuptools
+pip <span class="nb">install </span>shadowsocks
+</code></pre></div></div>
+
+<p>If locale error happens:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>C
+</code></pre></div></div>
+
+<h3 id="configue-shadowsocks">Configue Shadowsocks</h3>
+
+<p>Create a config file <code class="language-plaintext highlighter-rouge">/etc/shadowsocks.json</code> as:</p>
+
+<p>For single user:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_server_ip"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"server_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">8388</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"local_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"local_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">1080</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mypassword"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aes-256-cfb"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fast_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>For multiple users:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"port_password"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"8381"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ps1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"8382"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ps2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"8383"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ps3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"8384"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ps4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aes-256-cfb"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="start-shadowsocks-server">Start Shadowsocks server</h3>
+
+<p>Run shadowsocks server as daemon:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssserver <span class="nt">-c</span> /etc/shadowsocks.json <span class="nt">-d</span> start
+</code></pre></div></div>
+
+<p>Stop SS server:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssserver <span class="nt">-c</span> /etc/shadowsocks.json <span class="nt">-d</span> stop
+</code></pre></div></div>
+
+<p>Restart:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssserver <span class="nt">-c</span> /etc/shadowsocks.json <span class="nt">-d</span> restart
+</code></pre></div></div>
+
+<h3 id="auto-start-after-system-reboot">Auto start after system reboot</h3>
+
+<p>You can start SS server manually with the above command every time the system powers on, or find a way to let it auto started.</p>
+
+<p>There is a method: add the above start command in <code class="language-plaintext highlighter-rouge">/etc/rc.local</code> before <code class="language-plaintext highlighter-rouge">exit 0</code> line. However it does not work for me and I don’t know why.</p>
+
+<p>Supervisor can do this job.</p>
+
+<p>Install supervisor:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>supervisor
+</code></pre></div></div>
+
+<p>Create a supervisor config file <code class="language-plaintext highlighter-rouge">/etc/supervisor/conf.d/shadowsocks.conf</code> with contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[program:shadowsocks]
+command=ssserver -c /etc/shadowsocks.json -d start
+autostart=true
+autorestart=true
+user=root
+log_stderr=true
+logfile=/var/log/shadowsocks.log
+</code></pre></div></div>
+
+<p>Then start (or restart) supervisor:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>service supervisor start
+</code></pre></div></div>
+
+<p>And the server part is done.</p>
+
+<h3 id="update-kernel-and-install-bbr-acceleration-for-kernel-version--49">Update kernel and install BBR acceleration (for kernel version &lt; 4.9)</h3>
+
+<p>ref: <a href="https://teddysun.com/489.html">一键安装最新内核并开启 BBR 脚本</a></p>
+
+<p>Check kernal version</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">uname</span> <span class="nt">-r</span>
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">--no-check-certificate</span> https://github.com/teddysun/across/raw/master/bbr.sh
+<span class="nb">chmod</span> +x bbr.sh
+./bbr.sh
+</code></pre></div></div>
+
+<h2 id="mac-client">Mac client</h2>
+
+<p>Download: <a href="https://github.com/shadowsocks/shadowsocks-iOS/releases">ShadowsocksX</a></p>
+
+<h3 id="automatically-update-pac-file">Automatically update pac file</h3>
+
+<p>(Problem: ShadowsocksX client update pac file from GFWList failed.)</p>
+
+<p>Download a shell script from <a href="https://gist.github.com/VincentSit/b5b112d273513f153caf23a9da112b3a">here</a> and name it <code class="language-plaintext highlighter-rouge">update_gfwlist.sh</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod</span> +x update_gfwlist.sh
+<span class="nb">mv </span>update_gfwlist.sh /usr/local/bin
+</code></pre></div></div>
+
+<p>Then you can manually run <code class="language-plaintext highlighter-rouge">update_gfwlist.sh</code>, or schedule a daily job:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">EDITOR</span><span class="o">=</span>nano
+crontab <span class="nt">-e</span>
+</code></pre></div></div>
+
+<p>and add a line:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Update GFWList PAC file for ShadowsocksX at 10:30 everyday</span>
+30 10 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> sh /usr/local/bin/update_gfwlist.sh
+</code></pre></div></div>
+
+<p>This will automatically update the file <code class="language-plaintext highlighter-rouge">~/.ShadowsocksX/gfwlist.js</code> everyday at 10:30 am.</p>
+
+<h3 id="iterm">iTerm</h3>
+
+<p><a href="https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools">Using Shadowsocks with Command Line Tools</a></p>
+
+<h2 id="ios-client">iOS client</h2>
+
+<h3 id="wingy">Wingy</h3>
+
+<p>Thanks to NEKit, there’s perfect way for iOS user.</p>
+
+<blockquote>
+  <p>Wingy - Http(s),Socks5 Proxy Utility 作者是 SMART LIMITED</p>
+
+  <p>App Store: <a href="https://itunes.apple.com/us/app/wingy-http-s-socks5-proxy-utility/id1178584911?mt=8">Wingy</a></p>
+</blockquote>
+
+<h3 id="share-proxy-from-mac-within-lan">Share proxy from Mac within LAN</h3>
+
+<p>(<strong>This approach is not recommended now</strong>)</p>
+
+<p>For iOS,  the following method is OK for home use if you have an idle or long-time working Mac.</p>
+
+<p><strong>Step 1</strong>: make Mac a http proxy with privoxy</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>privoxy
+</code></pre></div></div>
+
+<p>Edit config file: <code class="language-plaintext highlighter-rouge">/usr/local/etc/privoxy/config</code>:</p>
+
+<ul>
+  <li>line “forward-socks5t / …” -&gt; “forward-socks5t / 127.0.0.1:1080”</li>
+  <li>line “listen-address 127.0.0.1:8118” -&gt; “listen-address 0.0.0.0:6666” (6666 is a custom unused port)</li>
+</ul>
+
+<p>Start privoxy:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/sbin/privoxy <span class="nt">--no-daemon</span> /usr/local/etc/privoxy/config &amp;
+</code></pre></div></div>
+
+<p><strong>Step 2</strong>: make Mac a pac server</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>nginx
+</code></pre></div></div>
+
+<p>Make a folder to be served by nginx and copy the pac file into it:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /usr/local/share/pac
+<span class="nb">cp</span> ~/.ShadowsocksX/gfwlist.js /usr/local/share/pac/proxy.pac
+</code></pre></div></div>
+
+<p>Edit <code class="language-plaintext highlighter-rouge">proxy.pac</code>, change the line “var proxy = …” to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var proxy = "PROXY [IP_of_Mac]:6666; DIRECT;";
+</code></pre></div></div>
+
+<p>Note that 6666 is the port you configured for privoxy.</p>
+
+<p>Then add a nginx configuration file in <code class="language-plaintext highlighter-rouge">/usr/local/etc/nginx/servers</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server <span class="o">{</span>
+    listen       8000<span class="p">;</span>
+    location / <span class="o">{</span>
+        root   /usr/local/share/pac<span class="p">;</span>
+        index  index.html index.htm<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Start nginx:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services start nginx
+</code></pre></div></div>
+
+<p>On iPhone, in WiFi’s http proxy auto mode, add:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://[IP_of_Mac]:8000/proxy.pac
+</code></pre></div></div>
+
+<p>We can also fix the IP of Mac by configuring the router.</p>
+
+<h2 id="install-and-running-ipsec-vpn-server">Install and running IPsec VPN server</h2>
+
+<p><a href="https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README-zh.md">IPsec VPN 服务器一键安装脚本</a></p>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>24 Oct 2018 &raquo;</span> <a href="/2018/10/24/python-dev-workflow-on-macos/">Python dev workflow on macOS</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+  <p>
+  Last modified: 2017-12-04
+  </p>
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/&text=Setup Shadowsocks / VPN on Ubuntu Server: http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/&appkey=&title=分享下@herrkaefer 的文章: Setup Shadowsocks / VPN on Ubuntu Server&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/&title=Setup Shadowsocks / VPN on Ubuntu Server" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=Setup Shadowsocks / VPN on Ubuntu Server&body=http://localhost:4000/2016/10/06/setup-shadowsocks-vpn-on-ubuntu-server/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

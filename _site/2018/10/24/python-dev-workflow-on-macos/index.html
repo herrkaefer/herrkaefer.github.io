@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>herrkaefer - Python dev workflow on macOS</title>
+  <meta name="author" content="herrkaefer" />
+  <meta name="description" content="The blog of herrkaefer" />
+  <meta name="wot-verification" content="6b75bf9082231d1ee0c1"/>
+  <meta name="p:domain_verify" content="baa9d114fdfa4549bb8f68d8d672bf52"/>
+  <link rel="canonical" href="http://localhost:4000/2018/10/24/python-dev-workflow-on-macos/" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="herrkaefer" href="http://localhost:4000/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="three columns sidebar">
+      <nav>
+  <a href="/">
+    
+    <img src="http://www.gravatar.com/avatar/e97051c9236cbec41aaa5860ba4891fc?s=200" id="gravatar" alt="avatar"/>
+    
+  </a>
+  <a href="/"><h2>herrkaefer</h2></a>
+  <div id="social">
+    <div id="stalker">
+  
+  <a title="herrkaefer on Github" href="https://github.com/herrkaefer">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herr_kaefer on Twitter" href="https://twitter.com/herr_kaefer">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on Instagram" href="https://www.instagram.com/herrkaefer">
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="herrkaefer on 新浪微博" href="https://www.weibo.com/herrkaefer">
+    <i class="fa fa-weibo" aria-hidden="true"></i>
+  </a>
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+
+  
+  <a title="Send a email" href="mailto:gloolar+blog@gmail.com">
+    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+  </a>
+  
+
+</div>
+
+  </div>
+  <hr>
+  <div >
+    <p>
+    <a href="https://herrkaefer.github.io/Mole/">
+      <img src="/assets/img/mole-icon.png" width="100" alt="Mole" style="margin-left: 0;"/>
+      Mole (鼹鼠)
+    </a>
+    <br>
+    A simple and stupid way to manage Markdown documents.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/psycopgr">
+      <i class="fa fa-github"></i>
+      psycopgr
+    </a>
+    <br>
+    All-pairs shortest routing on real map for pythoner.
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/AccelerateWatch">
+       <i class="fa fa-github"></i>
+       AccelerateWatch
+    </a>
+    <br>
+    Digital signal processing for watchOS with Swift APIs.
+    <a href="https://herrkaefer.com/AccelerateWatch/">(doc)</a>
+    </p>
+
+    <p>
+    <a href="https://github.com/herrkaefer/libevol">
+       <i class="fa fa-github"></i>
+       libevol
+    </a>
+    <br>
+    An evolutionary computation framework implemented in pure C.
+    </p>
+
+    <p>
+    <a href="https://chrome.google.com/webstore/detail/cleanup-tabs/ndkfidodjiekbmokfdcnkhjmikbnjjma">
+       <i class="fa fa-chrome"></i>
+       Cleanup Tabs
+    </a>
+    <br>
+    Chrome extension for closing group of tabs of self-defined URL patterns.
+    </p>
+
+  </div>
+  <hr>
+  <div>
+    <a href="https://herrkaefer.wordpress.com/">
+    旧时光
+    </a>
+  </div>
+
+</nav>
+
+    </div>
+
+    <div class="nine columns content">
+      <p class="meta">
+  October 24, 2018
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Python dev workflow on macOS</h1>
+
+<div id="post">
+  <p>Here is the new workflow in place of the old popular one using <code class="language-plaintext highlighter-rouge">virtualenv</code>, <code class="language-plaintext highlighter-rouge">pip</code>, <code class="language-plaintext highlighter-rouge">requirements.txt</code> and <code class="language-plaintext highlighter-rouge">virtualenvwrapper</code>.</p>
+
+<h2 id="tools">Tools</h2>
+
+<ul>
+  <li><a href="https://github.com/pyenv/pyenv"><strong>pyenv</strong></a> for Python version installation and switch</li>
+  <li><a href="https://pipenv.readthedocs.io/en/latest/"><strong>Pipenv</strong></a> for virtualenv creation and package management for each project</li>
+  <li><a href="https://github.com/gtalarico/pipenv-pipes"><strong>Pipenv-Pipes</strong></a> for Pipenv environment switch</li>
+</ul>
+
+<p>Pipenv is the central tool. pyenv provides specific version of Python (and pip) for Pipenv to initialize its virtualenv. Pipes is just a handy tool for fast navigation between Pipenv’s virtualenvs (like <code class="language-plaintext highlighter-rouge">virtualenvwrapper</code>’s <code class="language-plaintext highlighter-rouge">workon</code>), which may be built into Pipenv in the future.</p>
+
+<h2 id="basic-workflow">Basic workflow</h2>
+
+<h3 id="pyenv">pyenv</h3>
+
+<p>To install:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>pyenv
+</code></pre></div></div>
+
+<p>then add <code class="language-plaintext highlighter-rouge">eval "$(pyenv init -)"</code> to shell (e.g. <code class="language-plaintext highlighter-rouge">~/.zshrc</code>)</p>
+
+<p>To show available Python versions to install:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pyenv <span class="nb">install</span> <span class="nt">--list</span>
+</code></pre></div></div>
+
+<p>To install a Python version:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pyenv <span class="nb">install</span> &lt;version&gt;
+</code></pre></div></div>
+
+<h3 id="pipenv">Pipenv</h3>
+
+<p>Install Pipenv:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>pipenv
+</code></pre></div></div>
+
+<p>To install environment with specific Python version other than system default, this version must exist in system, so we can use pyenv to install the version first, then switch to its context.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pyenv shell &lt;version&gt;
+<span class="nv">$ </span>pipenv <span class="nt">--python</span> &lt;version&gt;
+</code></pre></div></div>
+
+<p>After this, pyenv will be of no use because corresponding Python and pip have been installed into Pipenv’s context, unless you update to a new Python version.</p>
+
+<h2 id="tips">Tips</h2>
+
+<h3 id="create-pipfile-from-requirementstxt">Create Pipfile from requirements.txt</h3>
+
+<p>To use Pipenv for an old project with <code class="language-plaintext highlighter-rouge">requirements.txt</code> available, we can first</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pipenv <span class="nb">install</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Pipfile</code> will be automatically created from <code class="language-plaintext highlighter-rouge">requirements.txt</code>, with all packages installed with specific version numbers.</p>
+
+<p>Second, run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pipenv graph
+</code></pre></div></div>
+
+<p>to show a dependency tree graph, from which we can identify less packages that <strong>we want</strong>. Then we can manually edit <code class="language-plaintext highlighter-rouge">Pipfile</code> to keep only these key packages. Note that it does not need to make a Pipfile without any redundant (i.e. all packages are leaf nodes in the dependency tree).</p>
+
+<p>Last, run <code class="language-plaintext highlighter-rouge">pipenv install</code> again.</p>
+
+<h3 id="time-saving-with---skip-lock">Time saving with <code class="language-plaintext highlighter-rouge">--skip-lock</code></h3>
+
+<h3 id="uninstall-packages-that-are-not-in-pipfile">Uninstall packages that are not in Pipfile</h3>
+
+<p>Manually deleted packages in Pipfile would not be automatically uninstalled, we can use</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pipenv clean
+</code></pre></div></div>
+
+<h3 id="sublime-text-syntax-highlighting-of-pipfile">Sublime Text syntax highlighting of Pipfile</h3>
+
+<p>(Tested for ST 3)</p>
+
+<ol>
+  <li>Install package <code class="language-plaintext highlighter-rouge">TOML</code> for TOML syntax highlighting. (Pipfile uses TOML format.)</li>
+  <li>Install package <code class="language-plaintext highlighter-rouge">ApplySyntax</code> for custom syntax hightlighting for non-default format</li>
+  <li>Add the following to <code class="language-plaintext highlighter-rouge">ApplySyntax</code> settings:</li>
+</ol>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"syntaxes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"syntax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TOML/TOML"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="nl">"file_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".*</span><span class="se">\\</span><span class="s2">Pipfile$"</span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"syntax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JavaScript/JSON"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Pipfile.lock"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+</div>
+
+<!-- <div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>19 Jan 2020 &raquo;</span> <a href="/2020/01/19/open-folder-or-file-with-sublime-text-from-finder-toolbar/">Open folder or file with Sublime Text from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>14 Mar 2018 &raquo;</span> <a href="/2018/03/14/create-new-text-file-from-finder-toolbar/">Create new text file from Finder toolbar</a>
+    </li>
+    
+    <li>
+      <span>15 Nov 2017 &raquo;</span> <a href="/2017/11/15/uno-reinvented-for-3-year-old-kids/">Uno reinvented for 3-year-old kids</a>
+    </li>
+    
+  </ul>
+</div> -->
+
+<div align="right">
+  
+</div>
+
+<div id="share-page">
+  <ul class="share-buttons">
+<hr>
+If you like this post, please share it on:
+  <li><a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2018/10/24/python-dev-workflow-on-macos/&text=Python dev workflow on macOS: http://localhost:4000/2018/10/24/python-dev-workflow-on-macos/&via=herr_kaefer" target="_blank" title="Tweet"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2018/10/24/python-dev-workflow-on-macos/&appkey=&title=分享下@herrkaefer 的文章: Python dev workflow on macOS&pic=&ralateUid=&language=zh_cn" target="_blank" title="Weibo"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="http://www.reddit.com/submit?url=http://localhost:4000/2018/10/24/python-dev-workflow-on-macos/&title=Python dev workflow on macOS" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a href="mailto:?subject=Python dev workflow on macOS&body=http://localhost:4000/2018/10/24/python-dev-workflow-on-macos/" target="_blank" title="Send email"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="comments">
+  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+
+      var disqus_config = function () {
+          this.page.url = page.url;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = page.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+
+          s.src = '//magicalmysterytool.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    Copyright ©2016-2020 herrkaefer &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3042065-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
